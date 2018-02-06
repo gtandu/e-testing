@@ -18,38 +18,57 @@ public class Utilisateur {
 	private String prenom;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilisateur")
 	private Collection<Authority> authorities;
-	
+
+	public Utilisateur() {
+		super();
+	}
+
+	public Utilisateur(String mail, String motDePasse, String nom, String prenom) {
+		super();
+		this.mail = mail;
+		this.motDePasse = motDePasse;
+		this.nom = nom;
+		this.prenom = prenom;
+	}
+
 	public String getMail() {
 		return mail;
 	}
+
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
 	public String getMotDePasse() {
 		return motDePasse;
 	}
+
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getPrenom() {
 		return prenom;
 	}
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 	public Collection<Authority> getAuthorities() {
 		return authorities;
 	}
+
 	public void setAuthorities(Collection<Authority> authorities) {
 		this.authorities = authorities;
 	}
-	
-	
 
 }
