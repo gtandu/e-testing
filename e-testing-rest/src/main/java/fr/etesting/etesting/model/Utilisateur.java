@@ -1,6 +1,7 @@
 package fr.etesting.etesting.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,6 +19,9 @@ public class Utilisateur {
 	private String prenom;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilisateur")
 	private Collection<Authority> authorities;
+	
+	@OneToMany
+	private List<Qcm> listQcm;
 
 	public Utilisateur() {
 		super();
@@ -70,5 +74,15 @@ public class Utilisateur {
 	public void setAuthorities(Collection<Authority> authorities) {
 		this.authorities = authorities;
 	}
+
+	public List<Qcm> getListQcm() {
+		return listQcm;
+	}
+
+	public void setListQcm(List<Qcm> listQcm) {
+		this.listQcm = listQcm;
+	}
+	
+	
 
 }
