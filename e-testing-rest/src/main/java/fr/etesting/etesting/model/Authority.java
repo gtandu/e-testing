@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 
+@SuppressWarnings("serial")
 @Entity
 public class Authority implements GrantedAuthority {
 

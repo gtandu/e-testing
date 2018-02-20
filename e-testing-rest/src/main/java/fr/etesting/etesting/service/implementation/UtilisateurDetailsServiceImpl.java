@@ -1,4 +1,4 @@
-package fr.etesting.etesting.service;
+package fr.etesting.etesting.service.implementation;
 
 import static java.util.Collections.emptyList;
 
@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.etesting.etesting.model.Utilisateur;
+import fr.etesting.etesting.service.IUtilisateurService;
 
 @Service
 public class UtilisateurDetailsServiceImpl implements UserDetailsService {

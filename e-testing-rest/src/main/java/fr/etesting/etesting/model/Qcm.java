@@ -1,7 +1,9 @@
 package fr.etesting.etesting.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,16 +11,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Qcm {
-	
+public class Qcm{
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@OneToMany
-	private List<QuestionReponse> listQuestionsReponses;
-	
+
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<QuestionReponse> listeQuestionsReponses;
+
 	private double noteFinale;
+	
+	
+
+	public Qcm() {
+		this.listeQuestionsReponses = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return id;
@@ -28,12 +36,12 @@ public class Qcm {
 		this.id = id;
 	}
 
-	public List<QuestionReponse> getListQuestionsReponses() {
-		return listQuestionsReponses;
+	public List<QuestionReponse> getListeQuestionsReponses() {
+		return listeQuestionsReponses;
 	}
 
-	public void setListQuestionsReponses(List<QuestionReponse> listQuestionsReponses) {
-		this.listQuestionsReponses = listQuestionsReponses;
+	public void setListeQuestionsReponses(List<QuestionReponse> listeQuestionsReponses) {
+		this.listeQuestionsReponses = listeQuestionsReponses;
 	}
 
 	public double getNoteFinale() {
@@ -43,7 +51,5 @@ public class Qcm {
 	public void setNoteFinale(double noteFinale) {
 		this.noteFinale = noteFinale;
 	}
-	
-	
 
 }

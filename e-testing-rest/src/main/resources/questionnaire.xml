@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qcm>
+    <listeQuestionsReponses>
+        <questionreponse>
+            <libelleQuestion>La lune est un satellite naturel de</libelleQuestion>
+            <listeReponsesCorrectes>
+                <reponseCorrecte>
+                    <libelleReponse>La Terre</libelleReponse>
+                </reponseCorrecte>
+            </listeReponsesCorrectes>
+            <listeReponsesFausses>
+                <reponseFausse>
+                    <libelleReponse>Jupiter</libelleReponse>
+                </reponseFausse>
+                <reponseFausse>
+                    <libelleReponse>Saturne</libelleReponse>
+                </reponseFausse>
+            </listeReponsesFausses>
+        </questionreponse>
+        <questionreponse>
+            <libelleQuestion>Par quoi commence un fichier XML ?</libelleQuestion>
+            <listeReponsesCorrectes>
+                <reponseCorrecte>
+                    <libelleReponse>&lt;?xml version="1.0"?&gt;</libelleReponse>
+                </reponseCorrecte>
+            </listeReponsesCorrectes>
+            <listeReponsesFausses>
+                <reponseFausse>
+                    <libelleReponse>&lt;!DOCTYPE xml&gt;</libelleReponse>
+                </reponseFausse>
+                <reponseFausse>
+                    <libelleReponse>&lt;xml xmlns="http://there-is-only-xml"&gt;</libelleReponse>
+                </reponseFausse>
+            </listeReponsesFausses>
+        </questionreponse>
+    </listeQuestionsReponses>
+</qcm>
