@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.IOException;
@@ -85,6 +86,8 @@ public class QcmControllerTest {
 
 		ResultActions result = mockMvc.perform(get(QcmController.URL_TO_CONVERT_QCM_TO_XML, idQcm));
 		result.andExpect(status().isOk());
+		result.andExpect(content().contentType("application/xml;charset=UTF-8"));
+
 
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));
 
@@ -98,6 +101,32 @@ public class QcmControllerTest {
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
 
 		ResultActions result = mockMvc.perform(get(QcmController.URL_TO_CONVERT_QCM_TO_XML, idQcm));
+		result.andExpect(status().isNotFound());
+
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+
+	@Test
+	public void testGetQcm() throws Exception {
+		Long idQcm = 1L;
+
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM_BY_ID, idQcm));
+		result.andExpect(status().isOk());
+		result.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+
+
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+	
+	@Test
+	public void testGetQcmNotFound() throws Exception {
+		Long idQcm = 1L;
+
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM_BY_ID, idQcm));
 		result.andExpect(status().isNotFound());
 
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));

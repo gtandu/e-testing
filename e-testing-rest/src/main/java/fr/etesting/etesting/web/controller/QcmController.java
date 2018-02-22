@@ -29,12 +29,24 @@ public class QcmController {
 	public static final String URL_TO_CONVERT_XML_TO_QCM = "/convertToQcm";
 
 	public static final String URL_TO_CONVERT_QCM_TO_XML = "/convertToXml/{id}";
+	
+	public static final String URL_QCM_BY_ID = "/qcm/{id}";
 
 	@Autowired
 	private XmlConverter xmlConverter;
 
 	@Autowired
 	private IQcmService qcmServiceImpl;
+	
+	@GetMapping(value = URL_QCM_BY_ID)
+	public ResponseEntity<Qcm> getQcm(@PathVariable(value = "id") Long idQcm){
+		try {
+			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
 	@PostMapping(value = URL_TO_CONVERT_XML_TO_QCM)
 	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("xml") MultipartFile qcmXml)
@@ -55,7 +67,6 @@ public class QcmController {
 		} catch (QcmNotFoundException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 }
