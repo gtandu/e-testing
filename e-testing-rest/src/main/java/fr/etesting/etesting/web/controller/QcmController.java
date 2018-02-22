@@ -6,7 +6,10 @@ import javax.xml.bind.JAXBException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,14 +18,17 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import fr.etesting.etesting.exception.QcmNotFoundException;
 import fr.etesting.etesting.model.Qcm;
 import fr.etesting.etesting.service.IQcmService;
 import fr.etesting.etesting.service.implementation.XmlConverter;
 
 @RestController
 public class QcmController {
-	
-	public static final String URL_TO_CONVERT_XML = "/convertXml";
+
+	public static final String URL_TO_CONVERT_XML_TO_QCM = "/convertToQcm";
+
+	public static final String URL_TO_CONVERT_QCM_TO_XML = "/convertToXml/{id}";
 
 	@Autowired
 	private XmlConverter xmlConverter;
@@ -30,14 +36,25 @@ public class QcmController {
 	@Autowired
 	private IQcmService qcmServiceImpl;
 
-	@PostMapping(value = URL_TO_CONVERT_XML)
-	public ResponseEntity<Object> convertXmlToObject(@RequestParam("xml") MultipartFile qcmXml)
+	@PostMapping(value = URL_TO_CONVERT_XML_TO_QCM)
+	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("xml") MultipartFile qcmXml)
 			throws JAXBException, IOException, NoSuchFieldException, SecurityException {
 		Object qcm = xmlConverter.convertFromXMLToObject(qcmXml);
 		ObjectMapper xmlMapper = new XmlMapper();
 		Qcm value = xmlMapper.readValue(xmlMapper.writeValueAsString(qcm), Qcm.class);
 		qcmServiceImpl.saveQcm(value);
 		return new ResponseEntity<>(value, HttpStatus.OK);
+
+	}
+
+	@GetMapping(value = URL_TO_CONVERT_QCM_TO_XML, produces = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<Qcm> convertQcmToXml(@PathVariable(value = "id") Long idQcm) {
+		try {
+			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 
 	}
 
