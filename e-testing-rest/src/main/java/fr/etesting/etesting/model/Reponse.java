@@ -4,18 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 
 @Entity
-@Inheritance
-public abstract class Reponse {
+public class Reponse {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	protected Long id;
+	private Long id;
 	
-	protected String libelleReponse;
-	protected double points;
+	private String libelleReponse;
+	private double points;
+	private boolean bonneReponse;
 	
 	public Long getId() {
 		return id;
@@ -35,5 +34,12 @@ public abstract class Reponse {
 	public void setPoints(double points) {
 		this.points = points;
 	}
+	public boolean isBonneReponse() {
+		return bonneReponse;
+	}
+	public void setBonneReponse(boolean bonneReponse) {
+		this.bonneReponse = bonneReponse;
+	}
+	
 
 }
