@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('e-testing-front App', () => {
+describe('mediaroll-client App', () => {
   let page: AppPage;
 
   beforeEach(() => {

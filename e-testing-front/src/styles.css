@@ -1,15 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    background: #2e3441;
-    background-image: -webkit-radial-gradient(top, circle cover, #4e7a89, #2e3441 80%);
-    background-image: -moz-radial-gradient(top, circle cover, #4e7a89, #2e3441 80%);
-    background-image: -o-radial-gradient(top, circle cover, #4e7a89, #2e3441 80%);
-    background-image: radial-gradient(top, circle cover, #4e7a89, #2e3441 80%);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+.login-background
+{
+    background-image: url('/assets/img/background.png');
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    background-size: cover;
+}
 
-  /* Font Definition */
+/* Font Definition */
 /* Champagne & Limousines */
 
 @font-face {
