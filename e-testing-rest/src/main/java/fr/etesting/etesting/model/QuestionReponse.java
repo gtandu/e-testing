@@ -18,10 +18,8 @@ public class QuestionReponse {
 	private String libelleQuestion;
 	private double totalPts;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<ReponseCorrecte> listeReponsesCorrectes;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<ReponseFausse> listeReponsesFausses;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Reponse> listeReponses;
 
 	public Long getId() {
 		return id;
@@ -47,20 +45,12 @@ public class QuestionReponse {
 		this.totalPts = totalPts;
 	}
 
-	public List<ReponseCorrecte> getListeReponsesCorrectes() {
-		return listeReponsesCorrectes;
+	public List<Reponse> getListeReponses() {
+		return listeReponses;
 	}
 
-	public void setListeReponsesCorrectes(List<ReponseCorrecte> listeReponsesCorrectes) {
-		this.listeReponsesCorrectes = listeReponsesCorrectes;
-	}
-
-	public List<ReponseFausse> getListeReponsesFausses() {
-		return listeReponsesFausses;
-	}
-
-	public void setListeReponsesFausses(List<ReponseFausse> listeReponsesFausses) {
-		this.listeReponsesFausses = listeReponsesFausses;
+	public void setListeReponses(List<Reponse> listeReponses) {
+		this.listeReponses = listeReponses;
 	}
 
 }

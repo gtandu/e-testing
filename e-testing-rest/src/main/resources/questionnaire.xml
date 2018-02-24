@@ -3,35 +3,33 @@
     <listeQuestionsReponses>
         <questionreponse>
             <libelleQuestion>La lune est un satellite naturel de</libelleQuestion>
-            <listeReponsesCorrectes>
-                <reponseCorrecte>
+            <listeReponses>
+                <reponse>
                     <libelleReponse>La Terre</libelleReponse>
-                </reponseCorrecte>
-            </listeReponsesCorrectes>
-            <listeReponsesFausses>
-                <reponseFausse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
                     <libelleReponse>Jupiter</libelleReponse>
-                </reponseFausse>
-                <reponseFausse>
+                </reponse>
+                <reponse>
                     <libelleReponse>Saturne</libelleReponse>
-                </reponseFausse>
-            </listeReponsesFausses>
+                </reponse>
+            </listeReponses>
         </questionreponse>
         <questionreponse>
             <libelleQuestion>Par quoi commence un fichier XML ?</libelleQuestion>
-            <listeReponsesCorrectes>
-                <reponseCorrecte>
+            <listeReponses>
+                <reponse>
                     <libelleReponse>&lt;?xml version="1.0"?&gt;</libelleReponse>
-                </reponseCorrecte>
-            </listeReponsesCorrectes>
-            <listeReponsesFausses>
-                <reponseFausse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
                     <libelleReponse>&lt;!DOCTYPE xml&gt;</libelleReponse>
-                </reponseFausse>
-                <reponseFausse>
+                </reponse>
+                <reponse>
                     <libelleReponse>&lt;xml xmlns="http://there-is-only-xml"&gt;</libelleReponse>
-                </reponseFausse>
-            </listeReponsesFausses>
+                </reponse>
+            </listeReponses>
         </questionreponse>
     </listeQuestionsReponses>
 </qcm>

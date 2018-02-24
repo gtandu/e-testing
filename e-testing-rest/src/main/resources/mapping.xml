@@ -10,23 +10,17 @@
 		<field name="libelleQuestion" type="java.lang.String">
 			<bind-xml name="libelleQuestion" node="element" />
 		</field>
-		<field name="listeReponsesCorrectes" type="fr.etesting.etesting.model.ReponseCorrecte" collection="arraylist" container="false">
-			<bind-xml name="listeReponsesCorrectes" node="element" />
-		</field>
-		<field name="listeReponsesFausses" type="fr.etesting.etesting.model.ReponseFausse" collection="arraylist" container="false">
-			<bind-xml name="listeReponsesFausses" node="element" />
+		<field name="listeReponses" type="fr.etesting.etesting.model.Reponse" collection="arraylist" container="false">
+			<bind-xml name="listeReponses" node="element" />
 		</field>
 	</class>
-	<class name="fr.etesting.etesting.model.ReponseCorrecte" container="false">
+	<class name="fr.etesting.etesting.model.Reponse" container="false">
 		<map-to xml="reponseCorrecte" />
 		<field name="libelleReponse" type="java.lang.String">
 			<bind-xml name="libelleReponse" node="element" />
 		</field>
-	</class>
-	<class name="fr.etesting.etesting.model.ReponseFausse" container="false">
-		<map-to xml="reponseFausse" />
-		<field name="libelleReponse" type="java.lang.String">
-			<bind-xml name="libelleReponse" node="element" />
+		<field name="bonneReponse" type="boolean">
+			<bind-xml name="bonneReponse" node="element" />
 		</field>
 	</class>
 </mapping>
