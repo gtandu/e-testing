@@ -10,29 +10,29 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Utilisateur {
+public class Account {
 
 	@Id
 	private String mail;
-	private String motDePasse;
-	private String nom;
-	private String prenom;
+	private String password;
+	private String lastname;
+	private String firstname;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilisateur")
 	private Collection<Authority> authorities;
-	
+
 	@OneToMany
 	private List<Qcm> listQcm;
 
-	public Utilisateur() {
+	public Account() {
 		super();
 	}
 
-	public Utilisateur(String mail, String motDePasse, String nom, String prenom) {
+	public Account(String mail, String motDePasse, String nom, String prenom) {
 		super();
 		this.mail = mail;
-		this.motDePasse = motDePasse;
-		this.nom = nom;
-		this.prenom = prenom;
+		this.password = motDePasse;
+		this.lastname = nom;
+		this.firstname = prenom;
 	}
 
 	public String getMail() {
@@ -43,28 +43,28 @@ public class Utilisateur {
 		this.mail = mail;
 	}
 
-	public String getMotDePasse() {
-		return motDePasse;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public Collection<Authority> getAuthorities() {
@@ -82,7 +82,5 @@ public class Utilisateur {
 	public void setListQcm(List<Qcm> listQcm) {
 		this.listQcm = listQcm;
 	}
-	
-	
 
 }
