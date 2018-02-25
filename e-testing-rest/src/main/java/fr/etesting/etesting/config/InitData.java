@@ -5,19 +5,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import fr.etesting.etesting.model.Utilisateur;
-import fr.etesting.etesting.service.IUtilisateurService;
+import fr.etesting.etesting.model.Account;
+import fr.etesting.etesting.service.IAccountService;
 
 @Component
 public class InitData implements ApplicationRunner {
 
 	@Autowired
-	private IUtilisateurService utilisateurService;
+	private IAccountService accountService;
 	
 	@Override
 	public void run(ApplicationArguments arg0) throws Exception {
-		Utilisateur utilisateur = new Utilisateur("admin@test.fr","admin","Joe","Biceps");
-		utilisateurService.saveUtilisateur(utilisateur);
+		Account utilisateur = new Account("admin@test.fr","admin","Joe","Biceps");
+		accountService.saveAccount(utilisateur);
 	}
 
 }

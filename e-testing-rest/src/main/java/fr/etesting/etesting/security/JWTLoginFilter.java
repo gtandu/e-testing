@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import fr.etesting.etesting.model.Utilisateur;
+import fr.etesting.etesting.model.Account;
 
 @CrossOrigin
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
@@ -32,12 +32,12 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
     public Authentication attemptAuthentication(
             HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException, ServletException {
-    	Utilisateur creds = new ObjectMapper()
-                .readValue(req.getInputStream(), Utilisateur.class);
+    	Account creds = new ObjectMapper()
+                .readValue(req.getInputStream(), Account.class);
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getMail(),
-                        creds.getMotDePasse(),
+                        creds.getPassword(),
                         Collections.emptyList()
                 )
         );
