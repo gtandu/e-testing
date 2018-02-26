@@ -6,22 +6,20 @@
     </div>
     
     <form>
-      <div class="inputrow">
-        <input type="text" id="name" placeholder="   Adresse mail"/>
+      <div class="inputrow" name="form" (ngSubmit)="login()" novalidate>
+        <input type="text" id="name" placeholder="Adresse mail"/>
         <label for="name">
           <i class="material-icons">person</i>
         </label>
       </div>
       <div class="inputrow">
-        <input type="password" id="pass" placeholder="  Mot de passe"/>
+        <input type="password" id="pass" placeholder="Mot de passe"/>
         <label for="pass">
             <i class="material-icons">lock</i>
         </label>
       </div>
       
-      <input type="submit" value="Login"/>
-      <input type="checkbox" name="remember" id="remember"/>
-      <label class="radio" for="remember">Rester Connecté</label>
+      <input class="waves-effect waves-light btn teal darken-1 right" type="submit" value="Login"/>
     </form>
   </div>
 </body>
