@@ -9,7 +9,6 @@ import { AuthentificationService } from "../services/authentification.service";
 })
 export class LoginComponent implements OnInit {
 
-
   model: any = {};
   errorMsg: String;
   loader: boolean = false;
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authService.logout();
+    document.body.classList.add('login-background');
   }
 
   login(){
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
           console.log("TOKEN OK REDIRECT APP");
           this.errorMsg = null;
           this.loader = true;
+          document.body.classList.remove('login-background')
           this.router.navigate(['/localhost/home']);
         } else {
           // login failed

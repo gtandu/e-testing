@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    background: #2e3441;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+.login-background
+{
+    background-image: url('/assets/img/background.png');
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    background-size: cover;
+}
 
   /* Font Definition */
 /* Champagne & Limousines */

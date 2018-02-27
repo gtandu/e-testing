@@ -1,62 +1,104 @@
-html,
-body {
-    font-family: "Champagne";
-    color: #fff;
-}
-body {
-    margin-top:10%;
-    margin-bottom:5%;
-    background: #2e3441;
+/* CSS Definition */
+
+div
+{
+    font-family: 'Champagne';
 }
 
-h4{
-    margin-top:0px;
+img{
+    vertical-align:-20px;
 }
 
-.signin {
-  display: block;
-  position: relative;
-  width: 300px;
-  margin: auto;
-  padding: 30px 30px 60px 30px;
-  background-color: rgba(0,0,0,0.1);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-box-shadow: inset 1px 1px 0 0 rgba(255,255,255,0.2), inset -1px -1px 0 0 rgba(0,0,0,0.2);
-  -moz-box-shadow: inset 1px 1px 0 0 rgba(255,255,255,0.2), inset -1px -1px 0 0 rgba(0,0,0,0.2);
-  box-shadow: inset 1px 1px 0 0 rgba(255,255,255,0.2), inset -1px -1px 0 0 rgba(0,0,0,0.2);
-}
-.signin .inputrow {
-  position: relative;
-}
-.signin .inputrow label {
-  position: absolute;
-  top: 12px;
-  left: 10px;
+.small{
+    width:80px;
+    height:80px;
 }
 
-.signin input[type="text"],
-.signin input[type="password"] {
-  padding: 10px 12px 10px 45px;
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  border: 1px solid rgba(255,255,255,0.5);
-  background-color: #fff;
-  color: #000;
-  outline: none;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  -webkit-transition: border-color 300ms 0 ease;
-  -moz-transition: border-color 300ms 0 ease;
-  transition: border-color 300ms 0 ease;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.row
+{
+    margin: 2px;
 }
-.signin input[type="text"]:focus + label:before,
-.signin input[type="password"]:focus + label:before {
-  opacity: 1;
+
+.container-fluid
+{
+    margin-top : 8%;
+    margin-bottom : 4%;
+    margin-left: 0;
+    margin-right: 0
 }
+
+.title
+{
+    font-family: 'Journey';
+    font-size: 40px;
+    text-align: center;
+    margin: 5px 0 5px;
+}
+
+h3
+{
+    font-size: 22px;
+    text-align: center;
+    font-weight: bold;
+    color: #333333;
+    margin: 5px 0 5px;
+}
+
+h4
+{
+    font-size: 16px;
+    font-weight: normal;
+    text-align: center;
+    color: #333333;
+    font-style: italic;
+    margin: 5px 0 15px;
+}
+
+.card-panel
+{
+    background-color: #F5F6F7;
+    box-shadow: 0 0 8px #A7A6A9;
+}
+
+.btn
+{
+    align-content: right;
+}
+
+/* label color */
+.input-field label {
+    font-weight: bold;
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+    color: #1E88E5;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #1E88E5;
+    box-shadow: 0 1px 0 0 #1E88E5;
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+    border-bottom: 1px solid #1E88E5;
+    box-shadow: 0 1px 0 0 #1E88E5;
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 red;
+  }
+
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus
+  input:-webkit-autofill, 
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    transition: background-color 5000s ease-in-out 0s;
+  }

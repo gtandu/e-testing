@@ -6,12 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AuthentificationService } from './services/authentification.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
 import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
