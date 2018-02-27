@@ -11,18 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Qcm{
+public class Qcm {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private String nom;
 
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<QuestionReponse> listeQuestionsReponses;
-
 	private double noteFinale;
-	
-	
+	private double totalPts;
 
 	public Qcm() {
 		this.listeQuestionsReponses = new ArrayList<>();
@@ -34,6 +33,14 @@ public class Qcm{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public List<QuestionReponse> getListeQuestionsReponses() {
@@ -50,6 +57,14 @@ public class Qcm{
 
 	public void setNoteFinale(double noteFinale) {
 		this.noteFinale = noteFinale;
+	}
+
+	public double getTotalPts() {
+		return totalPts;
+	}
+
+	public void setTotalPts(double totalPts) {
+		this.totalPts = totalPts;
 	}
 
 }

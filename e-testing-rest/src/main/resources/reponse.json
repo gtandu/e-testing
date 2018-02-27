@@ -1,0 +1,55 @@
+{
+    "id": 1,
+    "listeQuestionsReponses": [{
+            "id": 1,
+            "libelleQuestion": "La lune est un satellite naturel de",
+            "totalPts": 0,
+            "listeReponses": [{
+                    "id": 1,
+                    "libelleReponse": "La Terre",
+                    "points": 5,
+                    "bonneReponse": true,
+                    "repondu": true
+                },
+                {
+                    "id": 2,
+                    "libelleReponse": "Jupiter",
+                    "points": 0,
+                    "bonneReponse": false
+                },
+                {
+                    "id": 3,
+                    "libelleReponse": "Saturne",
+                    "points": 0,
+                    "bonneReponse": false
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "libelleQuestion": "Par quoi commence un fichier XML ?",
+            "totalPts": 0,
+            "listeReponses": [{
+                    "id": 4,
+                    "libelleReponse": "<?xml version=\"1.0\"?>",
+                    "points": 5,
+                    "bonneReponse": true,
+                    "repondu": true
+                },
+                {
+                    "id": 5,
+                    "libelleReponse": "<!DOCTYPE xml>",
+                    "points": 0,
+                    "bonneReponse": false
+                },
+                {
+                    "id": 6,
+                    "libelleReponse": "<xml xmlns=\"http://there-is-only-xml\">",
+                    "points": 0,
+                    "bonneReponse": false
+                }
+            ]
+        }
+    ],
+    "noteFinale": 0
+}
