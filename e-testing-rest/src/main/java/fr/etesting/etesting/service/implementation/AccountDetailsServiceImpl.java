@@ -9,19 +9,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import fr.etesting.etesting.model.Utilisateur;
-import fr.etesting.etesting.service.IUtilisateurService;
+import fr.etesting.etesting.model.Account;
+import fr.etesting.etesting.service.IAccountService;
 
 @Service
-public class UtilisateurDetailsServiceImpl implements UserDetailsService {
+public class AccountDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private IUtilisateurService utilisateurService;
+	private IAccountService accountService;
 	
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-		 Utilisateur utilisateur = utilisateurService.findByMail(mail);
-			return new User(utilisateur.getMail(), utilisateur.getMotDePasse(), emptyList());
+		 Account account = accountService.findByMail(mail);
+			return new User(account.getMail(), account.getPassword(), emptyList());
 	}
 
 }

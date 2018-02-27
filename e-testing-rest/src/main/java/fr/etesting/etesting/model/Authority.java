@@ -19,7 +19,7 @@ public class Authority implements GrantedAuthority {
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Utilisateur utilisateur;
+	private Account utilisateur;
 
 	private String role;
 
@@ -31,11 +31,11 @@ public class Authority implements GrantedAuthority {
 		this.id = id;
 	}
 
-	public Utilisateur getUtilisateur() {
+	public Account getUtilisateur() {
 		return utilisateur;
 	}
 
-	public void setUtilisateur(Utilisateur utilisateur) {
+	public void setUtilisateur(Account utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 

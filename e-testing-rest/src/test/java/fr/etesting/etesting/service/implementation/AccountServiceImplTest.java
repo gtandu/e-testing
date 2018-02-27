@@ -15,35 +15,35 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import fr.etesting.etesting.model.Utilisateur;
-import fr.etesting.etesting.repository.UtilisateurRepository;
+import fr.etesting.etesting.model.Account;
+import fr.etesting.etesting.repository.AccountRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UtilisateurServiceImplTest {
+public class AccountServiceImplTest {
 	@Mock
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Mock
-	private UtilisateurRepository utilisateurRepository;
+	private AccountRepository utilisateurRepository;
 	@InjectMocks
-	private UtilisateurServiceImpl utilisateurServiceImpl;
+	private AccountServiceImpl utilisateurServiceImpl;
 	
 
 	@Test
 	public void testSaveUtilisateur() throws Exception {
 		
-		Utilisateur utilisateur = new Utilisateur("admin@test.fr","admin", "Joe", "Biceps");
-		when(utilisateurRepository.save(any(Utilisateur.class))).thenReturn(utilisateur);
+		Account utilisateur = new Account("admin@test.fr","admin", "Joe", "Biceps");
+		when(utilisateurRepository.save(any(Account.class))).thenReturn(utilisateur);
 		
-		utilisateurServiceImpl.saveUtilisateur(utilisateur);
+		utilisateurServiceImpl.saveAccount(utilisateur);
 		
-		verify(utilisateurRepository).save(any(Utilisateur.class));
+		verify(utilisateurRepository).save(any(Account.class));
 	}
 
 	@Test
 	public void testFindByMail() throws Exception {
 		String mail = "admin@test.fr";
-		Utilisateur utilisateur = new Utilisateur(mail,"admin", "Joe", "Biceps");
+		Account utilisateur = new Account(mail,"admin", "Joe", "Biceps");
 		
 		when(utilisateurRepository.findByMail(eq(mail))).thenReturn(Optional.of(utilisateur));
 		
