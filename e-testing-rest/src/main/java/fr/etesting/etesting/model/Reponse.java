@@ -15,6 +15,7 @@ public class Reponse {
 	private String libelleReponse;
 	private double points;
 	private boolean bonneReponse;
+	private boolean repondu;
 	
 	public Long getId() {
 		return id;
@@ -40,6 +41,13 @@ public class Reponse {
 	public void setBonneReponse(boolean bonneReponse) {
 		this.bonneReponse = bonneReponse;
 	}
+	public boolean isRepondu() {
+		return repondu;
+	}
+	public void setRepondu(boolean repondu) {
+		this.repondu = repondu;
+	}
+	
 	
 
 }

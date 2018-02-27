@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <qcm>
+    <nom>QCM M2 Miage</nom>
     <listeQuestionsReponses>
         <questionreponse>
             <libelleQuestion>La lune est un satellite naturel de</libelleQuestion>

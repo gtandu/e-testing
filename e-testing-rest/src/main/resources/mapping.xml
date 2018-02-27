@@ -1,6 +1,9 @@
 <mapping>
 	<class name="fr.etesting.etesting.model.Qcm" container="true">
 		<map-to xml="qcm" />
+		<field name="nom" type="java.lang.String" container="false">
+			<bind-xml name="nom" node="element" />
+		</field>
 		<field name="listeQuestionsReponses" type="fr.etesting.etesting.model.QuestionReponse" collection="arraylist" container="false">
 			<bind-xml name="listeQuestionsReponses" node="element" />
 		</field>

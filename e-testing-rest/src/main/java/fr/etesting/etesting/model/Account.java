@@ -1,13 +1,16 @@
 package fr.etesting.etesting.model;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Account {
@@ -19,9 +22,10 @@ public class Account {
 	private String firstname;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilisateur")
 	private Collection<Authority> authorities;
-
-	@OneToMany
-	private List<Qcm> listQcm;
+	@ElementCollection
+	@JsonIgnore
+	private Map<Qcm, Double> listQcmNotes;
+	
 
 	public Account() {
 		super();
@@ -75,12 +79,14 @@ public class Account {
 		this.authorities = authorities;
 	}
 
-	public List<Qcm> getListQcm() {
-		return listQcm;
+	public Map<Qcm, Double> getListQcmNotes() {
+		return listQcmNotes;
 	}
 
-	public void setListQcm(List<Qcm> listQcm) {
-		this.listQcm = listQcm;
+	public void setListQcmNotes(Map<Qcm, Double> listQcmNotes) {
+		this.listQcmNotes = listQcmNotes;
 	}
+
+	
 
 }
