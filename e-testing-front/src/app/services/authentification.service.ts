@@ -20,14 +20,11 @@ export class AuthentificationService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
 
-        return this.http.post(this.server+'/api-token', body, options)
+        return this.http.post(this.server + '/api-token', body, options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                console.log(response);
-                let token = response.json().token;
+                const token = response.json().token;
                 if (token) {
-                    console.log(token);
-
                     // set token property
                     this.token = token;
 

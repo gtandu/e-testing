@@ -26,11 +26,10 @@ export class LoginComponent implements OnInit {
       result => {
         if (result === true) {
           // login successful
-          console.log("TOKEN OK REDIRECT APP");
           this.errorMsg = null;
           this.loader = true;
-          document.body.classList.remove('login-background')
-          this.router.navigate(['/localhost/home']);
+          document.body.classList.remove('login-background');
+          this.router.navigate(['/home']);
         } else {
           // login failed
           console.log("ERROR LOGIN");
