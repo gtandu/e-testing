@@ -6,7 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AuthentificationService } from './services/authentification.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './etesting/home/home.component';
+import { NavbarComponent } from './etesting/navbar/navbar.component';
+import { QcmComponent } from './etesting/qcm/qcm.component';
 
 import * as $ from 'jquery';
 import { EditQcmComponent } from './edit-qcm/edit-qcm.component';
@@ -16,7 +18,9 @@ import { EditQcmComponent } from './edit-qcm/edit-qcm.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EditQcmComponent
+    EditQcmComponent,
+    NavbarComponent,
+    QcmComponent
   ],
   imports: [
     BrowserModule,
