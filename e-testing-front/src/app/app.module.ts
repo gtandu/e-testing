@@ -9,12 +9,14 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import * as $ from 'jquery';
+import { EditQcmComponent } from './edit-qcm/edit-qcm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EditQcmComponent
   ],
   imports: [
     BrowserModule,
