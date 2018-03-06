@@ -1,71 +1,23 @@
 <div class="row">
     <div class="col l8 offset-l2 m8 offset-m2 s12">
-      <div class="card-panel grey lighten-4">
-        <span class="">
-          <h5>Question 1 (/5 points)</h5>
-          <p>
-            <b>La lune est un satellite naturel de :</b>
-          </p>
-          <form action="#">
-              <p>
-                <input type="checkbox" id="rep1" />
-                <label for="rep1">La Terre</label>
-              </p>
-              <p>
-                <input type="checkbox" id="rep2" />
-                <label for="rep2">Mars</label>
-              </p>
-              <p>
-                <input type="checkbox" id="rep3" />
-                <label for="rep3">Jupiter</label>
-              </p>
-                <p>
-                  <input type="checkbox" id="rep4" />
-                  <label for="rep4">Soleil</label>
-                </p>
-          </form>
-        </span>
-      </div>
-    </div>
-    <div class="col l8 offset-l2 m8 offset-m2 s12">
-        <div class="card-panel grey lighten-4">
-          <span class="">
-            <h5>Question 2 (/5 points)</h5>
-            <p>
-              <b>La lune est un satellite naturel de :
-                  La lune est un satellite naturel de :
-                  La lune est un satellite naturel de :
-                  La lune est un satellite naturel de :
-              </b>
-            </p>
-            <form action="#">
-                <p>
-                  <input type="checkbox" id="rep5" />
-                  <label for="rep5">Une phrase super longue pour voir ce que ça donne</label>
-                </p>
-                <p>
-                  <input type="checkbox" id="rep6" />
-                  <label for="rep6">Une phrase super longue pour voir ce que ça donne</label>
-                </p>
-                <p>
-                  <input type="checkbox" id="rep7" />
-                  <label for="rep7">Une phrase super longue pour voir ce que ça donne</label>
-                </p>
-                  <p>
-                    <input type="checkbox" id="rep8" />
-                    <label for="rep8">Une phrase super longue pour voir ce que ça donne</label>
-                  </p>
-            </form>
+        <div class="card-panel red lighten-4 title">
+          <span>
+              <h4 class="center">{{qcm.nom}}</h4>
           </span>
         </div>
       </div>
-<<<<<<< HEAD
-=======
-
-      <label>Click me: <input type="checkbox" ng-model="checked" ng-init="checked=true" /></label><br/>
-Show when checked:
-<span ng-if="checked" class="animate-if">
-  This is removed when the checkbox is unchecked.
-</span>
->>>>>>> cmapella
+    <div class="col l8 offset-l2 m8 offset-m2 s12">
+      <div class="card-panel grey lighten-4" *ngFor="let questionReponse of qcm.listeQuestionsReponses">
+        <span>
+            <b>
+              <p class="col l11 m11 s11 question">{{ questionReponse.libelleQuestion }} : </p>
+              <p class="col l1 m1 s1 points">/{{ questionReponse.totalPts }} points </p>
+            </b>
+            <p *ngFor="let reponse of questionReponse.listeReponses">
+              <input type="checkbox" id="{{ reponse.id }}"/>
+              <label for="{{ reponse.id }}"> {{ reponse.libelleReponse }} </label>
+            </p>
+        </span>
+      </div>
+    </div>
   </div>

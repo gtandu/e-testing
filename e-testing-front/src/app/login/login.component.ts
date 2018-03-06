@@ -28,11 +28,7 @@ export class LoginComponent implements OnInit {
           // login successful
           this.errorMsg = null;
           this.loader = true;
-<<<<<<< HEAD
           document.body.classList.remove('login-background');
-=======
-          document.body.classList.remove('login-background')
->>>>>>> cmapella
           this.router.navigate(['/home']);
         } else {
           // login failed

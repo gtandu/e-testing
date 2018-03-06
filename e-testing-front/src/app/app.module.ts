@@ -10,28 +10,20 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './etesting/home/home.component';
 import { NavbarComponent } from './etesting/navbar/navbar.component';
 import { QcmComponent } from './etesting/qcm/qcm.component';
-<<<<<<< HEAD
-
-=======
->>>>>>> cmapella
 import * as $ from 'jquery';
 import { EditQcmComponent } from './etesting/edit-qcm/edit-qcm.component';
 import { FileUploadComponent } from './etesting/fileupload/fileupload.component';
+import { QcmService } from './services/qcm/qcm.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-<<<<<<< HEAD
     EditQcmComponent,
     NavbarComponent,
     QcmComponent,
     FileUploadComponent
-=======
-    NavbarComponent,
-    QcmComponent
->>>>>>> cmapella
   ],
   imports: [
     BrowserModule,
@@ -40,7 +32,7 @@ import { FileUploadComponent } from './etesting/fileupload/fileupload.component'
     AppRoutingModule,
     FileUploadModule
   ],
-  providers: [AuthentificationService],
+  providers: [AuthentificationService,QcmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
