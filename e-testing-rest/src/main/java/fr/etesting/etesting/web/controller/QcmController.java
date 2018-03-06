@@ -47,6 +47,13 @@ public class QcmController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@PostMapping(value = URL_QCM_BY_ID)
+	public ResponseEntity<Qcm> savetQcm(Qcm qcm){
+		Qcm saveQcm = qcmServiceImpl.saveQcm(qcm);
+		return new ResponseEntity<>(saveQcm, HttpStatus.OK);
+		
+	}
 
 	@PostMapping(value = URL_TO_CONVERT_XML_TO_QCM)
 	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("file") MultipartFile qcmXml)
