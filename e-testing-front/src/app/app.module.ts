@@ -10,7 +10,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './etesting/home/home.component';
 import { NavbarComponent } from './etesting/navbar/navbar.component';
 import { QcmComponent } from './etesting/qcm/qcm.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> cmapella
 import * as $ from 'jquery';
 import { EditQcmComponent } from './etesting/edit-qcm/edit-qcm.component';
 import { FileUploadComponent } from './etesting/fileupload/fileupload.component';
@@ -20,10 +23,15 @@ import { FileUploadComponent } from './etesting/fileupload/fileupload.component'
     AppComponent,
     LoginComponent,
     HomeComponent,
+<<<<<<< HEAD
     EditQcmComponent,
     NavbarComponent,
     QcmComponent,
     FileUploadComponent
+=======
+    NavbarComponent,
+    QcmComponent
+>>>>>>> cmapella
   ],
   imports: [
     BrowserModule,
