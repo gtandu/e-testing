@@ -1,4 +1,30 @@
-<div *ngIf="qcmUploaded">
-    <p>Test {{ qcmUploaded.nom }}</p>
-    <input type="text" class="btn" [value]="qcmUploaded.nom">
+<div class="row" *ngIf="qcmUploaded">
+    <form class="col s12" (ngSubmit)="saveQcm()">
+        <input type="text" class="validate" [value]="qcmUploaded.nom">
+        <div *ngFor="let questionReponse of qcmUploaded.listeQuestionsReponses; let i = index">
+            <div class="col l12 m12 s12 card-panel grey lighten-4">
+                <span class="">
+                            <h5>Question {{i+1}} </h5>
+                            <p>
+                              <input type="text" [(ngModel)]="questionReponse.libelleQuestion" name=libelleQuestion{{questionReponse.id}} [value]="questionReponse.libelleQuestion">
+                            </p>
+                            <div *ngFor="let reponse of questionReponse.listeReponses; let i = index">
+                                    <div class="input-field col s8">                                       
+                                        <input type="text" id="libelleReponse{{reponse.id}} " [(ngModel)]="reponse.libelleReponse" name=libelleReponse{{reponse.id}} [value]= "reponse.libelleReponse"/>
+                                    </div>
+                                    <div class="input-field col s1">
+                                        <input type="number" id="points{{reponse.id}}" [(ngModel)]="reponse.points" name=points{{reponse.id}} [value]="reponse.points" class="center-align">
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <input type="checkbox" id="bonneReponse{{reponse.id}}" [(ngModel)]="reponse.bonneReponse" name=bonneReponse{{reponse.id}} [value]="reponse.bonneReponse">
+                                        <label for="bonneReponse{{reponse.id}}">Bonne réponse</label>
+                                    </div>
+                            </div>
+                    </span>
+            </div>
+        </div>
+        <div class="input-field col s12 center">
+            <button class="btn waves-effect waves-light pink accent-1" type="submit" name="action">Enregistrer QCM <i class="mdi-content-send right"></i></button>
+        </div>
+    </form>
 </div>

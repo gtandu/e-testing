@@ -20,5 +20,9 @@ export class EditQcmComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     console.log(this.qcmUploaded);
   }
+  saveQcm(){
+    console.log("Submit");
+    console.log(this.qcmUploaded);
+  }
 
 }
