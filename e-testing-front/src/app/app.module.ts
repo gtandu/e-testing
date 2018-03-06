@@ -9,7 +9,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './etesting/home/home.component';
 import { NavbarComponent } from './etesting/navbar/navbar.component';
 import { QcmComponent } from './etesting/qcm/qcm.component';
-
 import * as $ from 'jquery';
 
 @NgModule({
