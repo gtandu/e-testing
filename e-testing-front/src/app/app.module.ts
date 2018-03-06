@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FileUploadModule } from 'ng2-file-upload';
 import { AuthentificationService } from './services/authentification.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -11,7 +12,8 @@ import { NavbarComponent } from './etesting/navbar/navbar.component';
 import { QcmComponent } from './etesting/qcm/qcm.component';
 
 import * as $ from 'jquery';
-import { EditQcmComponent } from './edit-qcm/edit-qcm.component';
+import { EditQcmComponent } from './etesting/edit-qcm/edit-qcm.component';
+import { FileUploadComponent } from './etesting/fileupload/fileupload.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { EditQcmComponent } from './edit-qcm/edit-qcm.component';
     HomeComponent,
     EditQcmComponent,
     NavbarComponent,
-    QcmComponent
+    QcmComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FileUploadModule
   ],
   providers: [AuthentificationService],
   bootstrap: [AppComponent]

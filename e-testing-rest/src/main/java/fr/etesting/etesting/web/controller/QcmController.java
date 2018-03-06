@@ -49,7 +49,7 @@ public class QcmController {
 	}
 
 	@PostMapping(value = URL_TO_CONVERT_XML_TO_QCM)
-	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("xml") MultipartFile qcmXml)
+	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("file") MultipartFile qcmXml)
 			throws JAXBException, IOException, NoSuchFieldException, SecurityException {
 		Object qcm = xmlConverter.convertFromXMLToObject(qcmXml);
 		ObjectMapper xmlMapper = new XmlMapper();

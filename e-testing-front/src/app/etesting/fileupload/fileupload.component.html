@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col m12 s12">
+            <h3>Sélectionner un média</h3>
+            <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
+                <p class="center">Faites glisser votre fichier ici</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col m12 s12">
+            <div class="file-field input-field">
+                <div class="waves-effect waves-light btn">
+                    <span>Importer <i class="material-icons">cloud_upload</i></span>
+                    <input id="inputFile" name="xml" class="btn" type="file" ng2FileSelect [uploader]="uploader" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row no-margin">
+        <div class="folder-path">
+            <h3>Paramétrage du QCM</h3>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="qcmUploaded">
+        <app-edit-qcm (notify)='onNotify($event)' [qcmUploaded]=qcmUploaded></app-edit-qcm>
+    </div>
+
+</div>
