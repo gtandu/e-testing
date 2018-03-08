@@ -1,6 +1,7 @@
 package fr.etesting.etesting.web.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.xml.bind.JAXBException;
 
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import fr.etesting.etesting.exception.QcmNotFoundException;
+import fr.etesting.etesting.model.Account;
 import fr.etesting.etesting.model.Qcm;
 import fr.etesting.etesting.service.IQcmService;
 import fr.etesting.etesting.service.implementation.XmlConverter;
@@ -38,6 +42,15 @@ public class QcmController {
 	@Autowired
 	private IQcmService qcmServiceImpl;
 	
+	@PostMapping(value = URL_QCM_BY_ID)
+	public ResponseEntity<Account> correctQcm(@PathVariable(value = "idQcm") Long idQcm, Principal principal,
+			@RequestBody Qcm qcmToCorrect) {
+
+		Account account = qcmServiceImpl.correctQcm(idQcm, qcmToCorrect, principal.getName());
+		return new ResponseEntity<>(account, HttpStatus.OK);
+
+	}
+	
 	@GetMapping(value = URL_QCM_BY_ID)
 	public ResponseEntity<Qcm> getQcm(@PathVariable(value = "id") Long idQcm){
 		try {
@@ -48,9 +61,10 @@ public class QcmController {
 		}
 	}
 	
-	@PostMapping(value = URL_QCM_BY_ID)
-	public ResponseEntity<Qcm> savetQcm(Qcm qcm){
-		Qcm saveQcm = qcmServiceImpl.saveQcm(qcm);
+	@PutMapping(value = URL_QCM_BY_ID)
+	public ResponseEntity<Qcm> savedQcm(@RequestBody Qcm qcm){
+		Qcm qcmUpdated = qcmServiceImpl.updatePts(qcm);
+		Qcm saveQcm = qcmServiceImpl.saveQcm(qcmUpdated);
 		return new ResponseEntity<>(saveQcm, HttpStatus.OK);
 		
 	}

@@ -20,7 +20,7 @@ public class Account {
 	private String password;
 	private String lastname;
 	private String firstname;
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "utilisateur")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<Authority> authorities;
 	@ElementCollection
 	@JsonIgnore

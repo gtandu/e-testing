@@ -1,7 +1,5 @@
 package fr.etesting.etesting.service.implementation;
 
-import static java.util.Collections.emptyList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +19,7 @@ public class AccountDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
 		 Account account = accountService.findByMail(mail);
-			return new User(account.getMail(), account.getPassword(), emptyList());
+			return new User(account.getMail(), account.getPassword(), account.getAuthorities());
 	}
 
 }

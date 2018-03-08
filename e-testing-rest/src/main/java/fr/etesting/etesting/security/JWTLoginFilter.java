@@ -1,7 +1,6 @@
 package fr.etesting.etesting.security;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -38,7 +37,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
                 new UsernamePasswordAuthenticationToken(
                         creds.getMail(),
                         creds.getPassword(),
-                        Collections.emptyList()
+                        creds.getAuthorities()
                 )
         );
     }
@@ -49,7 +48,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletResponse res, FilterChain chain,
             Authentication auth) throws IOException, ServletException {
         TokenAuthentificationService
-                .addAuthentication(res, auth.getName());
+                .addAuthentication(res, auth);
     }
 
 }

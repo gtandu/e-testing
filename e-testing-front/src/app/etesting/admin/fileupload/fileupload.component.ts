@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthentificationService } from '../../services/authentification.service';
+import { AuthentificationService } from '../../../services/authentification.service';
 import { FileUploader, FileUploaderOptions, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
-import { Qcm } from '../../models/qcm';
+import { Qcm } from '../../../models/qcm';
 
 @Component({
   selector: 'app-fileupload',
@@ -36,7 +36,6 @@ export class FileUploadComponent implements OnInit {
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
-    console.log(JSON.parse(response));
     this.qcmUploaded = JSON.parse(response);
     this.loading = true;
   }

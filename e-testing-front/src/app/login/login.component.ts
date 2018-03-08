@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
           this.errorMsg = null;
           this.loader = true;
           document.body.classList.remove('login-background');
-          this.router.navigate(['/home']);
+          this.router.navigate(['etesting/home']);
         } else {
           // login failed
           console.log("ERROR LOGIN");

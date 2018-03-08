@@ -22,10 +22,12 @@ export class QcmService {
       .map((response: Response) => response.json());
   }
 
-  postQcm(qcm: Qcm): Observable<Qcm> {
+  savedQcm(qcm: Qcm): Observable<Qcm> {
+    console.log("SALUT QCM");
+    console.log(qcm);
     console.log(this.options);
     return this.http
-      .post(this.authService.server + Paths.QCM + `/${qcm.id}`, this.options)
+      .put(this.authService.server + Paths.QCM + `/${qcm.id}`, qcm, this.options)
       .map((response: Response) => response.json());
   }
 }

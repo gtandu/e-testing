@@ -1,6 +1,6 @@
 <div class="row" *ngIf="qcmUploaded">
   <form class="col s12" (ngSubmit)="saveQcm()">
-    <input type="text" class="validate" [value]="qcmUploaded.nom">
+    <input type="text" class="validate" [(ngModel)]="qcmUploaded.nom" name="qcmUploaded.nom{{qcmUploaded.id}}" [value]="qcmUploaded.nom">
     <div *ngFor="let questionReponse of qcmUploaded.listeQuestionsReponses; let i = index">
       <div class="col l12 m12 s12 card-panel grey lighten-4">
         <span>

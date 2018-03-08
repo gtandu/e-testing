@@ -63,4 +63,17 @@ public class QcmServiceImpl implements IQcmService {
 		return accountService.saveAccount(account);
 	}
 
+	@Override
+	public Qcm updatePts(Qcm qcm) {
+		for (QuestionReponse questionReponse : qcm.getListeQuestionsReponses()) {
+			questionReponse.getTotalPts();
+			for (Reponse reponse : questionReponse.getListeReponses()) {
+				if(reponse.getPoints() > 0) {					
+					questionReponse.setTotalPts(questionReponse.getTotalPts() + reponse.getPoints());
+				}
+			}
+		}
+		return qcm;
+	}
+
 }

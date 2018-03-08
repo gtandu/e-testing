@@ -1,12 +1,9 @@
 package fr.etesting.etesting.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -17,9 +14,6 @@ public class Authority implements GrantedAuthority {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Account utilisateur;
 
 	private String role;
 
@@ -29,14 +23,6 @@ public class Authority implements GrantedAuthority {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Account getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Account utilisateur) {
-		this.utilisateur = utilisateur;
 	}
 
 	public String getRole() {

@@ -28,15 +28,16 @@ public class TokenAuthentificationService {
     static final String HEADER_STRING = "Authorization";
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthentificationService.class);
 
-    static void addAuthentication(HttpServletResponse res, String username) throws IOException {
+    static void addAuthentication(HttpServletResponse res, Authentication auth) throws IOException {
         String JWT = Jwts.builder()
-                .setSubject(username)
+                .setSubject(auth.getName())
+                .claim("role", auth.getAuthorities())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
         Token token = new Token(JWT);
         ObjectMapper mapper = new ObjectMapper();
-        logger.info("Account : {} & Token : {}", username, JWT);
+        logger.info("Account : {} & Token : {}", auth, JWT);
         res.setContentType(MediaType.APPLICATION_JSON_VALUE);
         res.getWriter().write(mapper.writeValueAsString(token));
         res.getWriter().close();

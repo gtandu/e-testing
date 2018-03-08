@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QcmService } from '../../services/qcm/qcm.service';
 import { Qcm } from '../../models/qcm';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-qcm',
@@ -9,15 +10,16 @@ import { Qcm } from '../../models/qcm';
 })
 export class QcmComponent implements OnInit {
 
-  qcm : Qcm;
+  qcm: Qcm = new Qcm();
+  id: number;
 
-  constructor(private qcmService : QcmService) { }
+  constructor(private qcmService: QcmService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.qcmService.getQcmById(1).subscribe(qcmFromDb => {
-      this.qcm=qcmFromDb;
+    this.route.params.subscribe( params => {this.id = params.id; });
+    this.qcmService.getQcmById(this.id).subscribe(qcmFromDb => {
+      this.qcm = qcmFromDb;
     });
-    console.log(this.qcm);
   }
 
 }
