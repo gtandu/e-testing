@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qcm>
+    <nom>M2MIAA Recherche et Développement - 2017-2018</nom>
+    <listeQuestionsReponses>
+        <questionreponse>
+            <libelleQuestion>La lune est un satellite naturel de</libelleQuestion>
+            <listeReponses>
+                <reponse>
+                    <libelleReponse>La Terre</libelleReponse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>Jupiter</libelleReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>Saturne</libelleReponse>
+                </reponse>
+            </listeReponses>
+        </questionreponse>
+        <questionreponse>
+            <libelleQuestion>Par quoi commence un fichier XML ?</libelleQuestion>
+            <listeReponses>
+                <reponse>
+                    <libelleReponse>&lt;?xml version="1.0"?&gt;</libelleReponse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>&lt;!DOCTYPE xml&gt;</libelleReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>&lt;xml xmlns="http://there-is-only-xml"&gt;</libelleReponse>
+                </reponse>
+            </listeReponses>
+        </questionreponse>
+    </listeQuestionsReponses>
+</qcm>

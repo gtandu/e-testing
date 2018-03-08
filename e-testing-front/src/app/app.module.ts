@@ -14,6 +14,7 @@ import * as $ from 'jquery';
 import { EditQcmComponent } from './etesting/edit-qcm/edit-qcm.component';
 import { FileUploadComponent } from './etesting/fileupload/fileupload.component';
 import { QcmService } from './services/qcm/qcm.service';
+import { ListQcmComponent } from './etesting/list-qcm/list-qcm.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { QcmService } from './services/qcm/qcm.service';
     EditQcmComponent,
     NavbarComponent,
     QcmComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    ListQcmComponent
   ],
   imports: [
     BrowserModule,

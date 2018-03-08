@@ -16,8 +16,13 @@ public class InitData implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments arg0) throws Exception {
-		Account utilisateur = new Account("admin@test.fr","admin","Joe","Biceps");
-		accountService.saveAccount(utilisateur);
+		Account gtandu = new Account("g.tandu@hotmail.fr","edu","TANDU","Glodie");
+		Account cmapella = new Account("mapella.corentin@gmail.com","edu","MAPELLA","Corentin");
+		Account dcourtaud = new Account("didier.courtaud@univ-evry.fr","ens","COURTAUD","Didier");
+		
+		accountService.saveAccount(gtandu);
+		accountService.saveAccount(cmapella);
+		accountService.saveAccount(dcourtaud);
 	}
 
 }

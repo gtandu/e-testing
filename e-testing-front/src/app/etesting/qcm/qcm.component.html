@@ -11,7 +11,7 @@
         <span>
             <b>
               <p class="col l11 m11 s11 question">{{ questionReponse.libelleQuestion }} : </p>
-              <p class="col l1 m1 s1 points">/{{ questionReponse.totalPts }} points </p>
+              <p class="col l1 m1 s1 points">/{{ questionReponse.totalPts }} pts </p>
             </b>
             <p *ngFor="let reponse of questionReponse.listeReponses">
               <input type="checkbox" id="{{ reponse.id }}"/>
