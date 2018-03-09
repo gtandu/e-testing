@@ -16,6 +16,7 @@ public class QuestionReponse {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String libelleQuestion;
+	private double ptsObtenues;
 	private double totalPts;
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -35,6 +36,14 @@ public class QuestionReponse {
 
 	public void setLibelleQuestion(String libelleQuestion) {
 		this.libelleQuestion = libelleQuestion;
+	}
+	
+	public double getPtsObtenues() {
+		return ptsObtenues;
+	}
+
+	public void setPtsObtenues(double ptsObtenues) {
+		this.ptsObtenues = ptsObtenues;
 	}
 
 	public double getTotalPts() {

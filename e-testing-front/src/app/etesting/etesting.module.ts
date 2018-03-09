@@ -15,6 +15,7 @@ import { JwtHelper } from "angular2-jwt";
 import { RoleGuardService } from "../guards/role-guard.service";
 import { AuthGuard } from "../guards/auth-guard.service";
 import { ListQcmComponent } from "./list-qcm/list-qcm.component";
+import { CorrectQcmComponent } from './correct-qcm/correct-qcm.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ETestingRoutingModule, FileUploadModule],
@@ -22,10 +23,11 @@ import { ListQcmComponent } from "./list-qcm/list-qcm.component";
     NavbarComponent,
     QcmComponent,
     ListQcmComponent,
+    CorrectQcmComponent,
     HomeComponent,
     AdminComponent,
     EditQcmComponent,
-    FileUploadComponent
+    FileUploadComponent,
   ],
   providers: [JwtHelper, AuthGuard, RoleGuardService, QcmService]
 })

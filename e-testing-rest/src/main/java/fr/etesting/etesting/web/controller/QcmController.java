@@ -2,6 +2,7 @@ package fr.etesting.etesting.web.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import javax.xml.bind.JAXBException;
 
@@ -22,7 +23,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import fr.etesting.etesting.exception.QcmNotFoundException;
-import fr.etesting.etesting.model.Account;
 import fr.etesting.etesting.model.Qcm;
 import fr.etesting.etesting.service.IQcmService;
 import fr.etesting.etesting.service.implementation.XmlConverter;
@@ -35,6 +35,8 @@ public class QcmController {
 	public static final String URL_TO_CONVERT_QCM_TO_XML = "/convertToXml/{id}";
 	
 	public static final String URL_QCM_BY_ID = "/qcm/{id}";
+	
+	public static final String URL_QCM = "/qcm";
 
 	@Autowired
 	private XmlConverter xmlConverter;
@@ -43,11 +45,11 @@ public class QcmController {
 	private IQcmService qcmServiceImpl;
 	
 	@PostMapping(value = URL_QCM_BY_ID)
-	public ResponseEntity<Account> correctQcm(@PathVariable(value = "idQcm") Long idQcm, Principal principal,
+	public ResponseEntity<Qcm> correctQcm(@PathVariable(value = "id") Long idQcm, Principal principal,
 			@RequestBody Qcm qcmToCorrect) {
 
-		Account account = qcmServiceImpl.correctQcm(idQcm, qcmToCorrect, principal.getName());
-		return new ResponseEntity<>(account, HttpStatus.OK);
+		Qcm qcmCorrige = qcmServiceImpl.correctQcm(idQcm, qcmToCorrect, principal.getName());
+		return new ResponseEntity<>(qcmCorrige, HttpStatus.OK);
 
 	}
 	
@@ -68,8 +70,13 @@ public class QcmController {
 		return new ResponseEntity<>(saveQcm, HttpStatus.OK);
 		
 	}
+	
+	@GetMapping(value = URL_QCM)
+	public ResponseEntity<List<Qcm>> getAllQcm(){
+		return new ResponseEntity<>(qcmServiceImpl.findAllQcm(), HttpStatus.OK);
+	}
 
-	@PostMapping(value = URL_TO_CONVERT_XML_TO_QCM)
+	@PostMapping(value = URL_QCM + "/xml")
 	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("file") MultipartFile qcmXml)
 			throws JAXBException, IOException, NoSuchFieldException, SecurityException {
 		Object qcm = xmlConverter.convertFromXMLToObject(qcmXml);
@@ -80,7 +87,7 @@ public class QcmController {
 
 	}
 
-	@GetMapping(value = URL_TO_CONVERT_QCM_TO_XML, produces = MediaType.APPLICATION_XML_VALUE)
+	@GetMapping(value = URL_QCM_BY_ID + "/xml", produces = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Qcm> convertQcmToXml(@PathVariable(value = "id") Long idQcm) {
 		try {
 			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);

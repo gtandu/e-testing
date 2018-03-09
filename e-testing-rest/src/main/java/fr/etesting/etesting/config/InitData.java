@@ -25,7 +25,7 @@ public class InitData implements ApplicationRunner {
 		Account dcourtaud = new Account("didier.courtaud@univ-evry.fr","ens","COURTAUD","Didier");
 		Authority authorityAdmin = new Authority();
 		authorityAdmin.setRole(RoleAccountEnum.Administrator.getRole());
-		dcourtaud.setAuthorities(Arrays.asList(authorityAdmin));
+		gtandu.setAuthorities(Arrays.asList(authorityAdmin));
 		accountService.saveAccount(gtandu);
 		accountService.saveAccount(cmapella);
 		accountService.saveAccount(dcourtaud);

@@ -1,25 +1,32 @@
 <app-navbar></app-navbar>
 
 <div class="row">
+  <form class="col s12" (ngSubmit)="submitQcm()">
     <div class="col l8 offset-l2 m8 offset-m2 s12">
-        <div class="card-panel grey lighten-2 title">
-          <span>
-              <h4 class="center">{{qcm.nom}}</h4>
-          </span>
-        </div>
-      </div>
-    <div class="col l8 offset-l2 m8 offset-m2 s12">
-      <div class="card-panel grey lighten-4" *ngFor="let questionReponse of qcm.listeQuestionsReponses">
+      <div class="card-panel grey lighten-2 title">
         <span>
-            <b>
-              <p class="col l11 m11 s11 question">{{ questionReponse.libelleQuestion }} : </p>
-              <p class="col l1 m1 s1 points">/{{ questionReponse.totalPts }} pts </p>
-            </b>
-            <p *ngFor="let reponse of questionReponse.listeReponses">
-              <input type="checkbox" id="{{ reponse.id }}"/>
-              <label for="{{ reponse.id }}"> {{ reponse.libelleReponse }} </label>
-            </p>
+          <h4 class="center">{{qcm.nom}}</h4>
         </span>
       </div>
     </div>
-  </div>
+    <div class="col l8 offset-l2 m8 offset-m2 s12">
+      <div class="card-panel grey lighten-4" *ngFor="let questionReponse of qcm.listeQuestionsReponses">
+        <span>
+          <b>
+            <p class="col l11 m11 s11 question">{{ questionReponse.libelleQuestion }} : </p>
+            <p class="col l1 m1 s1 points">/{{ questionReponse.totalPts }} pts </p>
+          </b>
+          <p *ngFor="let reponse of questionReponse.listeReponses">
+            <input type="checkbox" id="{{ reponse.id }}" [(ngModel)]="reponse.repondu" name="reponse.repondu{{reponse.id}}" />
+            <label for="{{ reponse.id }}"> {{ reponse.libelleReponse }} </label>
+          </p>
+        </span>
+      </div>
+    </div>
+    <div class="input-field col s12 center">
+        <button class="btn waves-effect waves-light pink accent-1" type="submit" name="action">Terminer QCM
+          <i class="mdi-content-send right"></i>
+        </button>
+      </div>
+  </form>
+</div>

@@ -1,5 +1,6 @@
 package fr.etesting.etesting.service.implementation;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class AccountServiceImpl implements IAccountService {
 		{
 			throw new UsernameNotFoundException(mail);
 		}
+	}
+
+	@Override
+	public List<Account> findAllAdmin() {
+		return  accountRepository.findAllAdmin();
 	}
 	
 	

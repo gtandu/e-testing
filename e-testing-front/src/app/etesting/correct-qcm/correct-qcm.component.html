@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col l8 offset-l2 m8 offset-m2 s12">
+    <div class="card-panel grey lighten-2 title">
+      <span>
+        <h4 class="center">{{qcm.nom}}</h4>
+      </span>
+    </div>
+    <div class="card-panel grey lighten-2 title">
+        <span>
+          <h5 class="center">Vous avez obtenu la note de {{qcm.noteFinale}}/20</h5>
+        </span>
+      </div>
+  </div>
+  <div class="col l8 offset-l2 m8 offset-m2 s12">
+    <div class="card-panel grey lighten-4" *ngFor="let questionReponse of qcm.listeQuestionsReponses">
+      <span>
+        <b>
+          <p class="col l11 m11 s11 question">{{ questionReponse.libelleQuestion }} : </p>
+          <p class="col l1 m1 s1 points">{{questionReponse.ptsObtenues}}/{{ questionReponse.totalPts }} pts </p>
+        </b>
+        <p *ngFor="let reponse of questionReponse.listeReponses">
+            <input *ngIf="reponse.bonneReponse == true && reponse.repondu == true" class="filled-in bonneReponse" type="checkbox" id="{{ reponse.id }}" checked="checked" disabled="disabled"/>
+            <input *ngIf="reponse.bonneReponse == true && reponse.repondu == false" class="filled-in bonneReponse" type="checkbox" id="{{ reponse.id }}" disabled="disabled"/>
+            <input *ngIf="reponse.bonneReponse == false && reponse.repondu == false" class="filled-in mauvaiseReponse" type="checkbox" id="{{ reponse.id }}" disabled="disabled"/>
+            <input *ngIf="reponse.bonneReponse == false && reponse.repondu == true" class="filled-in mauvaiseReponse" type="checkbox" id="{{ reponse.id }}" checked="checked" disabled="disabled"/>
+            <label for="{{ reponse.id }}"> {{ reponse.libelleReponse }} </label>
+        </p>
+      </span>
+    </div>
+  </div>
+  <div class="col s12 center">
+      <a [href]="['/etesting/home']" class="waves-effect waves-light btn">Quitter QCM</a>
+  </div>
+</div>

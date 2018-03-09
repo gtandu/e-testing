@@ -1,0 +1,9 @@
+[type="checkbox"].bonneReponse.filled-in:disabled + label:after{
+    background-color: green;
+    border-color: black
+}
+
+[type="checkbox"].mauvaiseReponse.filled-in:disabled + label:after{
+    background-color: red;
+    border-color: black
+}

@@ -181,11 +181,10 @@ img {
 			<tr>
 				<td bgcolor="#e0f2f1"
 					style="padding: 0 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: center;">
-					<span style="color: #26a69a;"><b>Vos résultats sont disponibles ! </b></span>
+					<span style="color: #26a69a;"><b>Les résultats du QCM</b></span>
                     <p style="margin: 0;">
-						<h3 th:text="${subjectName}">Anglais</h3>
-                        Note Continu : <b th:text="${markCc}+'/20'">12</b> <br />
-                        Note Partiel : <b th:text="${markExam}+'/20'">15</b>
+						<h3 th:text="${qcmName}">Qcm</h3>
+                        <b th:text="${studentFirstName + ' ' + studentLastName}"></b> à obtenu la note de : <b th:text="${markQcm}+'/20'">12</b>
 					</p>
 				</td>
 			</tr>

@@ -6,6 +6,7 @@ import { FileUploadComponent } from "./admin/fileupload/fileupload.component";
 import { AdminComponent } from "./admin/admin.component";
 import { RoleGuardService } from "../guards/role-guard.service";
 import { QcmComponent } from "./qcm/qcm.component";
+import { CorrectQcmComponent } from "./correct-qcm/correct-qcm.component";
 
 const etestingRoutes: Routes = [
   {
@@ -16,6 +17,10 @@ const etestingRoutes: Routes = [
       {
         path: "qcm/:id",
         component: QcmComponent
+      },
+      {
+        path: "qcm/:id/answer",
+        component: CorrectQcmComponent
       },
       {
         path: "admin",

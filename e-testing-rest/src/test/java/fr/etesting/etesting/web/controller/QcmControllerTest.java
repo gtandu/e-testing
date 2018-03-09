@@ -71,7 +71,7 @@ public class QcmControllerTest {
 		when(xmlConverter.convertFromXMLToObject(any(MockMultipartFile.class))).thenReturn(new Qcm());
 		when(qcmServiceImpl.saveQcm(any(Qcm.class))).thenReturn(new Qcm());
 
-		ResultActions result = mockMvc.perform(fileUpload(QcmController.URL_TO_CONVERT_XML_TO_QCM).file(qcmXml));
+		ResultActions result = mockMvc.perform(fileUpload(QcmController.URL_QCM).file(qcmXml));
 		result.andExpect(status().isOk());
 
 		verify(xmlConverter).convertFromXMLToObject(any(MockMultipartFile.class));
@@ -84,7 +84,7 @@ public class QcmControllerTest {
 
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
 
-		ResultActions result = mockMvc.perform(get(QcmController.URL_TO_CONVERT_QCM_TO_XML, idQcm));
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM+"/xml", idQcm));
 		result.andExpect(status().isOk());
 		result.andExpect(content().contentType("application/xml;charset=UTF-8"));
 
@@ -100,7 +100,7 @@ public class QcmControllerTest {
 
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
 
-		ResultActions result = mockMvc.perform(get(QcmController.URL_TO_CONVERT_QCM_TO_XML, idQcm));
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM+"/xml", idQcm));
 		result.andExpect(status().isNotFound());
 
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));

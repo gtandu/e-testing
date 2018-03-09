@@ -23,7 +23,7 @@ export class AuthentificationService {
         const body = JSON.stringify({ mail: mail, password: password });
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        
+
         return this.http.post(this.server + '/api-token', body, options)
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response

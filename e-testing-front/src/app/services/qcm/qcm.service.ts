@@ -11,10 +11,19 @@ export class QcmService {
   headers = new Headers({ Authorization: "Token " + this.authService.token });
   options = new RequestOptions({ headers: this.headers });
 
+  currentQcm: Qcm = new Qcm();
+
   constructor(
     private http: Http,
     private authService: AuthentificationService
   ) {}
+
+
+  getAllQcm(): Observable<Qcm[]>{
+      return this.http
+        .get(this.authService.server + Paths.QCM, this.options)
+        .map((response: Response) => response.json());
+  }
 
   getQcmById(qcmId: number): Observable<Qcm> {
     return this.http
@@ -23,11 +32,22 @@ export class QcmService {
   }
 
   savedQcm(qcm: Qcm): Observable<Qcm> {
-    console.log("SALUT QCM");
-    console.log(qcm);
-    console.log(this.options);
     return this.http
-      .put(this.authService.server + Paths.QCM + `/${qcm.id}`, qcm, this.options)
+      .put(
+        this.authService.server + Paths.QCM + `/${qcm.id}`,
+        qcm,
+        this.options
+      )
+      .map((response: Response) => response.json());
+  }
+
+  correctQcm(qcm: Qcm): Observable<Qcm> {
+    return this.http
+      .post(
+        this.authService.server + Paths.QCM + `/${qcm.id}`,
+        qcm,
+        this.options
+      )
       .map((response: Response) => response.json());
   }
 }

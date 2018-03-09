@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthentificationService } from '../../../services/authentification.service';
 import { FileUploader, FileUploaderOptions, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Qcm } from '../../../models/qcm';
+import { Paths } from '../../../models/paths';
 
 @Component({
   selector: 'app-fileupload',
@@ -21,7 +22,7 @@ export class FileUploadComponent implements OnInit {
   public uploader;
 
   options: FileUploaderOptions = {
-    url: this.authService.server + '/convertToQcm',
+    url: this.authService.server + Paths.QCM_XML,
     authToken: 'Token ' + this.authService.token,
     authTokenHeader: 'Authorization',
     autoUpload: true
