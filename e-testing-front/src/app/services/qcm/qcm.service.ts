@@ -31,6 +31,12 @@ export class QcmService {
       .map((response: Response) => response.json());
   }
 
+  resetQcmById(qcmId: number): Observable<Qcm> {
+    return this.http
+      .patch(this.authService.server + Paths.QCM + `/${qcmId}`, null, this.options)
+      .map((response: Response) => response.json());
+  }
+
   savedQcm(qcm: Qcm): Observable<Qcm> {
     return this.http
       .put(

@@ -65,7 +65,7 @@ public class QcmServiceImpl implements IQcmService {
 		double diviseur = qcm.getTotalPts() / noteSur20;
 		Double note = noteFinale /= diviseur;
 		qcm.setNoteFinale(QcmServiceImpl.round(note,2));
-		account.getListQcmNotes().put(qcm, note);
+		//account.getListQcmNotes().put(qcm, note);
 		qcm = this.saveQcm(qcm);
 		accountService.saveAccount(account);
 		this.sendQcmResult(account.getFirstname(), account.getLastname(), qcm.getNom(), qcm.getNoteFinale());
@@ -97,6 +97,17 @@ public class QcmServiceImpl implements IQcmService {
 	@Override
 	public List<Qcm> findAllQcm() {
 		return qcmRepository.findAll();
+	}
+	
+	public Qcm resetQcm(Qcm qcm) {
+		qcm.setNoteFinale(0);
+		for (QuestionReponse questionReponse : qcm.getListeQuestionsReponses()) {
+			questionReponse.setPtsObtenues(0);
+			for (Reponse reponse : questionReponse.getListeReponses()) {
+				reponse.setRepondu(false);	
+			}
+		}
+		return this.saveQcm(qcm);
 	}
 	
 	private static double round(double value, int places) {

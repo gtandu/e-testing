@@ -23,10 +23,17 @@
         </span>
       </div>
     </div>
-    <div class="input-field col s12 center">
+    <div *ngIf="loader; else elseBlock" class="col s8 offset-s2 progress">
+      <div class="indeterminate"></div>
+    </div>
+    <ng-template #elseBlock>
+      <div class="input-field col s12 center">
         <button class="btn waves-effect waves-light pink accent-1" type="submit" name="action">Terminer QCM
           <i class="mdi-content-send right"></i>
         </button>
       </div>
+    </ng-template>
+
+
   </form>
 </div>

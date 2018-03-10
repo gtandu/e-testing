@@ -62,6 +62,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	    configAutenticacao.addAllowedHeader("Content-Type");
 	    configAutenticacao.addAllowedHeader("Accept");
 	    configAutenticacao.addAllowedMethod("POST");
+	    configAutenticacao.addAllowedMethod("PATCH");
 	    configAutenticacao.addAllowedMethod("GET");
 	    configAutenticacao.addAllowedMethod("DELETE");
 	    configAutenticacao.addAllowedMethod("PUT");

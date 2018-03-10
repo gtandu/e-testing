@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,8 +68,19 @@ public class QcmController {
 	public ResponseEntity<Qcm> savedQcm(@RequestBody Qcm qcm){
 		Qcm qcmUpdated = qcmServiceImpl.updatePts(qcm);
 		Qcm saveQcm = qcmServiceImpl.saveQcm(qcmUpdated);
-		return new ResponseEntity<>(saveQcm, HttpStatus.OK);
+		return new ResponseEntity<>(saveQcm, HttpStatus.CREATED);
 		
+	}
+	
+	@PatchMapping(URL_QCM_BY_ID)
+	public ResponseEntity<Qcm> resetQcm(@PathVariable(value = "id") Long idQcm){
+		try {
+			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
+			qcm = qcmServiceImpl.resetQcm(qcm);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@GetMapping(value = URL_QCM)

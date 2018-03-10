@@ -24,7 +24,6 @@ export class ListQcmComponent implements OnInit {
   }
 
   takeQcm(id){
-    console.log(id);
     this.router.navigate(['etesting/' + Paths.QCM + `/${id}`]);
   }
 

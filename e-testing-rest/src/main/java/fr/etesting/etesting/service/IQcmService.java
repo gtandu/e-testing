@@ -13,5 +13,6 @@ public interface IQcmService {
 	public Qcm updatePts(Qcm qcm);
 	public void sendQcmResult(String studentFirstName, String studentLastName, String qcmName, double markQcm);
 	public List<Qcm> findAllQcm();
+	public Qcm resetQcm(Qcm qcm);
 
 }
