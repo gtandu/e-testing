@@ -2,8 +2,8 @@
   <div class="col l8 offset-l2 m8 offset-m2 s12 nav-wrapper">
     <a href="/etesting/home" class="brand-logo">e-testing</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#">Admin</a></li>
-      <li><a href="#">Déconnexion</a></li>
+      <li *ngIf="isAdmin"><a href="/etesting/admin">Admin</a></li>
+      <li><a href="/login" (click)="logout()">Déconnexion</a></li>
     </ul>
   </div>
 </nav>

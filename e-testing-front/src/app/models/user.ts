@@ -3,6 +3,7 @@ export class User{
     mail: string;
     token: string;
     roles: string[];
+    isAdmin: boolean;
 
     constructor(private model: any)
     {
