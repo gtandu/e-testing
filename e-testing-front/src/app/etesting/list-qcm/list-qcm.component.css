@@ -10,3 +10,7 @@ div.card-panel {
     padding: 1% 2% 1% 2%;
     margin: 1% 0 1% 0;
 }
+
+button.full {
+    width:100%;
+}

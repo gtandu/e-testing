@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="col l6 m6 s12" *ngFor="let qcm of qcms">
-      <div class="card grey lighten-4">
+      <button class="card grey lighten-4 full" (click)="takeQcm(qcm.id)" [id]="qcm.id">
         <div class="card-content">
           <span class="card-title center">{{qcm.nom}}</span>
         </div>
-      </div>
+      </button>
     </div>
 </div>
