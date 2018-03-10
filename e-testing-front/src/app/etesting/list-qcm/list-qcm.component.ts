@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Qcm } from '../../models/qcm';
+import { QcmService } from '../../services/qcm/qcm.service';
 
 @Component({
   selector: 'app-list-qcm',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListQcmComponent implements OnInit {
 
-  constructor() { }
+  qcms : Qcm[];
+
+  constructor(private qcmService: QcmService) { }
 
   ngOnInit() {
+    this.qcmService.getAllQcm().subscribe(qcm => {
+      this.qcms = qcm;
+    });
   }
 
 }

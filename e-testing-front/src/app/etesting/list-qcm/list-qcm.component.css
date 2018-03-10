@@ -2,22 +2,11 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto;
 }
 
-p.question {
-    margin: 0 0 1% 0;
-    font-size: 18px;
-}
-
-p.points {
-    margin: 0 0 1% 0;
-    font-size: 18px;
+div.row {
+    margin: 0 16% 0 16%;
 }
 
 div.card-panel {
     padding: 1% 2% 1% 2%;
     margin: 1% 0 1% 0;
-}
-
-div.card-panel.title {
-    padding: 1% 2% 1% 2%;
-    margin: auto;
 }
