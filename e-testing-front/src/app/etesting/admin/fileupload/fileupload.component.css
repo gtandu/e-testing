@@ -1,0 +1,21 @@
+h1, h2, h3, h4, h5, h6 {
+    margin: auto;
+}
+
+div.card-panel.drag-and-drop {
+    padding: 1% 2% 1% 2%;
+    margin: 1% 0 1% 0;
+    height: 200px;
+}
+
+div.card-panel.import {
+    padding: 1% 2% 1% 2%;
+    margin: 1% 0 1% 0;
+    height: 200px;
+}
+
+
+div.card-panel.title {
+    padding: 1% 2% 1% 2%;
+    margin: auto;
+}

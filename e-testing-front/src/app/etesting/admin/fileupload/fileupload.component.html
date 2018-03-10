@@ -1,17 +1,21 @@
 <div class="container">
     <div class="row">
-
-        <div class="col m12 s12">
-            <h3>Sélectionner un questionnaire au format XML</h3>
-            <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
-                <p class="center">Faites glisser votre fichier ici</p>
+        <div class="col l12 m12 s12">
+            <div class="card-panel grey lighten-2 title">
+                <span>
+                    <h4 class="center">Sélectionner un questionnaire au format XML</h4>
+                </span>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col m12 s12">
-            <div class="file-field input-field">
+        <div class="col l10 m10 s10">
+            <div class="card-panel grey lighten-4 drag-and-drop">
+                <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone">
+                    <p class="center">Faites glisser votre fichier ici</p>
+                </div>
+            </div>
+        </div>
+        <div class="col l2 m2 s2">
+            <div class="file-field input-field import">
                 <div class="waves-effect waves-light btn">
                     <span>Importer <i class="material-icons">cloud_upload</i></span>
                     <input id="inputFile" name="xml" class="btn" type="file" ng2FileSelect [uploader]="uploader" />
@@ -20,14 +24,17 @@
         </div>
     </div>
 
-    <div class="row no-margin">
-        <div class="folder-path">
-            <h3>Paramétrage du QCM</h3>
+    
+
+    <div class="col l12 m12 s12">
+            <div class="card-panel grey lighten-2 title folder-path">
+                <span>
+                    <h4 class="center">Paramétrage du QCM</h4>
+                </span>
+            </div>
         </div>
-    </div>
 
     <div class="row" *ngIf="qcmUploaded">
         <app-edit-qcm (notify)='onNotify($event)' [qcmUploaded]=qcmUploaded></app-edit-qcm>
     </div>
-
 </div>
