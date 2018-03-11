@@ -18,11 +18,10 @@ export class QcmService {
     private authService: AuthentificationService
   ) {}
 
-
-  getAllQcm(): Observable<Qcm[]>{
-      return this.http
-        .get(this.authService.server + Paths.QCM, this.options)
-        .map((response: Response) => response.json());
+  getAllQcm(): Observable<Qcm[]> {
+    return this.http
+      .get(this.authService.server + Paths.QCM, this.options)
+      .map((response: Response) => response.json());
   }
 
   getQcmById(qcmId: number): Observable<Qcm> {
@@ -33,7 +32,11 @@ export class QcmService {
 
   resetQcmById(qcmId: number): Observable<Qcm> {
     return this.http
-      .patch(this.authService.server + Paths.QCM + `/${qcmId}`, null, this.options)
+      .patch(
+        this.authService.server + Paths.QCM + `/${qcmId}`,
+        null,
+        this.options
+      )
       .map((response: Response) => response.json());
   }
 
@@ -54,6 +57,10 @@ export class QcmService {
         qcm,
         this.options
       )
-      .map((response: Response) => response.json());
+      .map((response: Response) => {
+        this.currentQcm = response.json();
+        console.log(this.currentQcm);
+        return response.json();
+      });
   }
 }

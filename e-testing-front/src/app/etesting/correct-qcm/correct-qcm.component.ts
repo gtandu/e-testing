@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewChecked } from "@angular/core";
 import { QcmService } from "../../services/qcm/qcm.service";
 import { RouterLink, ActivatedRoute, Router } from "@angular/router";
 import { Qcm } from "../../models/qcm";
@@ -22,14 +22,15 @@ export class CorrectQcmComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
-    this.qcmService.getQcmById(this.id).subscribe(qcmFromDb => {
-      this.qcm = qcmFromDb;
-    });
+    // this.qcmService.getQcmById(this.id).subscribe(qcmFromDb => {
+    //   this.qcm = qcmFromDb;
+    // });
+    this.qcm = this.qcmService.currentQcm;
+    console.log(this.qcm);
   }
 
   resetQcm() {
-    this.qcmService.resetQcmById(this.id).subscribe(qcmReset => {
-    });
+    this.qcmService.resetQcmById(this.id).subscribe(qcmReset => {});
     this.router.navigate(["/etesting/home"]);
   }
 }

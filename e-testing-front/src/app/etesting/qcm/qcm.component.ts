@@ -38,6 +38,6 @@ export class QcmComponent implements OnInit {
       this.router.navigate([
         "etesting/" + Paths.QCM + `/${this.qcm.id}` + "/answer"
       ]);
-    }, 2000);
+    }, 4500);
   }
 }

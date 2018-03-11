@@ -66,8 +66,8 @@ public class QcmServiceImpl implements IQcmService {
 		Double note = noteFinale /= diviseur;
 		qcm.setNoteFinale(QcmServiceImpl.round(note,2));
 		//account.getListQcmNotes().put(qcm, note);
-		qcm = this.saveQcm(qcm);
-		accountService.saveAccount(account);
+		//qcm = this.saveQcm(qcm);
+		//accountService.saveAccount(account);
 		this.sendQcmResult(account.getFirstname(), account.getLastname(), qcm.getNom(), qcm.getNoteFinale());
 		return qcm;
 	}
