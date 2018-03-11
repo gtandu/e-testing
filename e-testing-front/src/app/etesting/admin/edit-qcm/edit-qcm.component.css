@@ -1,0 +1,9 @@
+.add:hover{
+    color : green;
+    cursor: pointer;
+}
+
+.delete:hover{
+    color : red;
+    cursor: pointer;
+}

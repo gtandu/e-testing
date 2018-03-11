@@ -1,19 +1,23 @@
 <div class="row" *ngIf="qcmUploaded">
   <form class="col s12" (ngSubmit)="saveQcm()">
-    <input type="text" class="validate" [(ngModel)]="qcmUploaded.nom" name="qcmUploaded.nom{{qcmUploaded.id}}" [value]="qcmUploaded.nom">
+    <input type="text" class="validate" [(ngModel)]="qcmUploaded.nom" name="qcmUploaded.nom{{qcmUploaded.id}}" [value]="qcmUploaded.nom" required>
     <div *ngFor="let questionReponse of qcmUploaded.listeQuestionsReponses; let i = index">
       <div class="col l12 m12 s12 card-panel grey lighten-4">
         <span>
-          <h5>
-            <b>Question {{i+1}}</b>
-          </h5>
+          <div>
+            <h5>
+              <b>Question {{i+1}}</b>
+              <i *ngIf="qcmUploaded.listeQuestionsReponses.length > 1" class="material-icons right delete" (click)=deleteQuestionReponse(questionReponse.id)>clear</i>
+              <i class="material-icons right add" (click)=addQuestionReponse()>add</i>
+            </h5>
+          </div>
           <div class="input-field col s8">
             <p>
               <input type="text" [(ngModel)]="questionReponse.libelleQuestion" name=libelleQuestion{{questionReponse.id}} [value]="questionReponse.libelleQuestion">
             </p>
           </div>
           <div *ngFor="let reponse of questionReponse.listeReponses; let i = index">
-            <div class="col s8">
+            <div class="col s7">
               <p>
                 <input type="text" id="libelleReponse{{reponse.id}} " [(ngModel)]="reponse.libelleReponse" name=libelleReponse{{reponse.id}}
                   [value]="reponse.libelleReponse" />
@@ -32,6 +36,13 @@
                 <label for="bonneReponse{{reponse.id}}">Bonne réponse</label>
               </p>
             </div>
+            <div class="col s1">
+                <p>
+                  <i class="material-icons add" (click)=addReponse(questionReponse.id)>add</i>
+                  <i *ngIf="questionReponse.listeReponses.length > 1" class="material-icons delete" (click)=deleteReponse(questionReponse.id,reponse.id)>clear</i>
+                </p>
+              </div>
+            
           </div>
         </span>
       </div>

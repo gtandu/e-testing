@@ -63,4 +63,54 @@ export class QcmService {
         return response.json();
       });
   }
+
+  addQuestionReponse(qcm: Qcm): Observable<Qcm> {
+    return this.http
+      .put(
+        this.authService.server +
+          Paths.QCM +
+          `/${qcm.id}` +
+          Paths.QUESTION_REPONSE,
+        null,
+        this.options
+      )
+      .map((response: Response) => response.json());
+  }
+
+  deleteQuestionReponse(qcm: Qcm, questionReponseId: number): Observable<Qcm> {
+    return this.http
+      .delete(
+        this.authService.server +
+          Paths.QCM +
+          `/${qcm.id}` +
+          Paths.QUESTION_REPONSE + `/${questionReponseId}`,
+        this.options
+      )
+      .map((response: Response) => response.json());
+  }
+
+  addReponse(qcm: Qcm, questionReponseId: number): Observable<Qcm> {
+    return this.http
+      .put(
+        this.authService.server +
+          Paths.QCM +
+          `/${qcm.id}` +
+          Paths.QUESTION_REPONSE + `/${questionReponseId}` + Paths.REPONSE ,
+        null,
+        this.options
+      )
+      .map((response: Response) => response.json());
+  }
+
+  deleteReponse(qcm: Qcm, questionReponseId: number, reponseId: number): Observable<Qcm> {
+    return this.http
+      .delete(
+        this.authService.server +
+          Paths.QCM +
+          `/${qcm.id}` +
+          Paths.QUESTION_REPONSE + `/${questionReponseId}` + Paths.REPONSE + `/${reponseId}`,
+        this.options
+      )
+      .map((response: Response) => response.json());
+  }
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,15 @@ public class QcmController {
 	public static final String URL_QCM_BY_ID = "/qcm/{id}";
 	
 	public static final String URL_QCM = "/qcm";
+	
+	public static final String URL_QUESTION_REPONSE = QcmController.URL_QCM_BY_ID+"/questionReponse";
+
+	public static final String URL_QUESTION_REPONSE_BY_ID = QcmController.URL_QCM_BY_ID+"/questionReponse/{idQr}";
+
+	public static final String URL_REPONSE = QcmController.URL_QUESTION_REPONSE_BY_ID+"/reponse";
+
+	public static final String URL_REPONSE_BY_ID = QcmController.URL_QUESTION_REPONSE_BY_ID+"/reponse/{idReponse}";
+
 
 	@Autowired
 	private XmlConverter xmlConverter;
@@ -103,6 +113,56 @@ public class QcmController {
 	public ResponseEntity<Qcm> convertQcmToXml(@PathVariable(value = "id") Long idQcm) {
 		try {
 			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	
+	
+	@PutMapping(URL_QUESTION_REPONSE)
+	public ResponseEntity<Qcm> addQuestionReponse(@PathVariable(value = "id") Long idQcm) {
+		Qcm qcm;
+		try {
+			qcm = qcmServiceImpl.findQcmById(idQcm);
+			qcm = qcmServiceImpl.addQuestionReponse(qcm);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@DeleteMapping(URL_QUESTION_REPONSE_BY_ID)
+	public ResponseEntity<Qcm> deleteQuestionReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr) {
+		Qcm qcm;
+		try {
+			qcm = qcmServiceImpl.findQcmById(idQcm);
+			qcm = qcmServiceImpl.deleteQuestionReponse(qcm, idQr);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping(URL_REPONSE)
+	public ResponseEntity<Qcm> addReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr) {
+		Qcm qcm;
+		try {
+			qcm = qcmServiceImpl.findQcmById(idQcm);
+			qcm = qcmServiceImpl.addReponse(qcm, idQr);
+			return new ResponseEntity<>(qcm, HttpStatus.OK);
+		} catch (QcmNotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@DeleteMapping(URL_REPONSE_BY_ID)
+	public ResponseEntity<Qcm> deleteReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr, @PathVariable(value = "idReponse") Long idReponse) {
+		Qcm qcm;
+		try {
+			qcm = qcmServiceImpl.findQcmById(idQcm);
+			qcm = qcmServiceImpl.deleteReponse(qcm, idQr, idReponse);
 			return new ResponseEntity<>(qcm, HttpStatus.OK);
 		} catch (QcmNotFoundException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

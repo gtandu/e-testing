@@ -1,5 +1,6 @@
 package fr.etesting.etesting.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,19 @@ public class QuestionReponse {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Reponse> listeReponses;
+	
+	
+
+	public QuestionReponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public QuestionReponse(String libelleQuestion) {
+		super();
+		this.libelleQuestion = libelleQuestion;
+		this.listeReponses = Arrays.asList(new Reponse("A saisir"), new Reponse("A saisir"));
+	}
 
 	public Long getId() {
 		return id;

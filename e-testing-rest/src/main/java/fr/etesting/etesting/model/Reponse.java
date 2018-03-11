@@ -17,6 +17,19 @@ public class Reponse {
 	private boolean bonneReponse;
 	private boolean repondu;
 	
+	
+	
+	public Reponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Reponse(String libelleReponse) {
+		super();
+		this.libelleReponse = libelleReponse;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

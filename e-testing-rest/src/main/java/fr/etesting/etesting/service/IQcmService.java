@@ -14,5 +14,10 @@ public interface IQcmService {
 	public void sendQcmResult(String studentFirstName, String studentLastName, String qcmName, double markQcm);
 	public List<Qcm> findAllQcm();
 	public Qcm resetQcm(Qcm qcm);
+	public Qcm addQuestionReponse(Qcm qcm);
+	public Qcm deleteQuestionReponse(Qcm qcm, Long idQr);
+	public Qcm addReponse(Qcm qcm, Long idQr);
+	public Qcm deleteReponse(Qcm qcm, Long idQr, Long idReponse);
+
 
 }

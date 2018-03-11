@@ -21,6 +21,7 @@ export class EditQcmComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
   }
+
   saveQcm() {
     this.qcmService.savedQcm(this.qcmUploaded).subscribe(qcmSaved => {
       this.qcmUploaded = qcmSaved;
@@ -28,4 +29,27 @@ export class EditQcmComponent implements OnInit, OnChanges {
     this.router.navigate(['etesting/home']);
   }
 
+  addQuestionReponse(){
+    this.qcmService.addQuestionReponse(this.qcmUploaded).subscribe(qcmSaved =>{
+      this.qcmUploaded = qcmSaved;
+    });
+  }
+
+  deleteQuestionReponse(questionReponseId: number){
+    this.qcmService.deleteQuestionReponse(this.qcmUploaded, questionReponseId).subscribe(qcmSaved =>{
+      this.qcmUploaded = qcmSaved;
+    });
+  }
+
+  addReponse(questionReponseId: number){
+    this.qcmService.addReponse(this.qcmUploaded,questionReponseId).subscribe(qcmSaved =>{
+      this.qcmUploaded = qcmSaved;
+    });
+  }
+
+  deleteReponse(questionReponseId: number,reponseId: number){
+    this.qcmService.deleteReponse(this.qcmUploaded, questionReponseId, reponseId).subscribe(qcmSaved =>{
+      this.qcmUploaded = qcmSaved;
+    });
+  }
 }
