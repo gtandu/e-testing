@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,8 +27,13 @@ import fr.etesting.etesting.exception.QcmNotFoundException;
 import fr.etesting.etesting.model.Qcm;
 import fr.etesting.etesting.service.IQcmService;
 import fr.etesting.etesting.service.implementation.XmlConverter;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
+@Api(value="Qcm", description="Operations pertaining to qcm in E-Testing")
 public class QcmController {
 
 	public static final String URL_TO_CONVERT_XML_TO_QCM = "/convertToQcm";
@@ -55,6 +59,10 @@ public class QcmController {
 	@Autowired
 	private IQcmService qcmServiceImpl;
 	
+	@ApiOperation(value = "Correct a cm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully correct qcm")
+    })
 	@PostMapping(value = URL_QCM_BY_ID)
 	public ResponseEntity<Qcm> correctQcm(@PathVariable(value = "id") Long idQcm, Principal principal,
 			@RequestBody Qcm qcmToCorrect) {
@@ -64,6 +72,12 @@ public class QcmController {
 
 	}
 	
+	@ApiOperation(value = "Retrieve a qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieve a qcm"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+            
+    })
 	@GetMapping(value = URL_QCM_BY_ID)
 	public ResponseEntity<Qcm> getQcm(@PathVariable(value = "id") Long idQcm){
 		try {
@@ -74,6 +88,10 @@ public class QcmController {
 		}
 	}
 	
+	@ApiOperation(value = "Save a qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successfully save a qcm")
+    })
 	@PutMapping(value = URL_QCM_BY_ID)
 	public ResponseEntity<Qcm> savedQcm(@RequestBody Qcm qcm){
 		Qcm qcmUpdated = qcmServiceImpl.updatePts(qcm);
@@ -82,22 +100,19 @@ public class QcmController {
 		
 	}
 	
-	@PatchMapping(URL_QCM_BY_ID)
-	public ResponseEntity<Qcm> resetQcm(@PathVariable(value = "id") Long idQcm){
-		try {
-			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
-			qcm = qcmServiceImpl.resetQcm(qcm);
-			return new ResponseEntity<>(qcm, HttpStatus.OK);
-		} catch (QcmNotFoundException e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-	
+	@ApiOperation(value = "Retrieve all qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieve all qcm")
+    })
 	@GetMapping(value = URL_QCM)
 	public ResponseEntity<List<Qcm>> getAllQcm(){
 		return new ResponseEntity<>(qcmServiceImpl.findAllQcm(), HttpStatus.OK);
 	}
 
+	@ApiOperation(value = "Convert an xml to Qcm object")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully convert to Qcm")
+    })
 	@PostMapping(value = URL_QCM + "/xml")
 	public ResponseEntity<Qcm> convertXmlToObject(@RequestParam("file") MultipartFile qcmXml)
 			throws JAXBException, IOException, NoSuchFieldException, SecurityException {
@@ -109,8 +124,13 @@ public class QcmController {
 
 	}
 
+	@ApiOperation(value = "Export Qcm to Xml")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully export to xml"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+    })
 	@GetMapping(value = URL_QCM_BY_ID + "/xml", produces = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Qcm> convertQcmToXml(@PathVariable(value = "id") Long idQcm) {
+	public ResponseEntity<Qcm> exportQcmToXml(@PathVariable(value = "id") Long idQcm) {
 		try {
 			Qcm qcm = qcmServiceImpl.findQcmById(idQcm);
 			return new ResponseEntity<>(qcm, HttpStatus.OK);
@@ -120,7 +140,11 @@ public class QcmController {
 	}
 	
 	
-	
+	@ApiOperation(value = "Add questionReponse to Qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully add questionReponse to Qcm"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+    })
 	@PutMapping(URL_QUESTION_REPONSE)
 	public ResponseEntity<Qcm> addQuestionReponse(@PathVariable(value = "id") Long idQcm) {
 		Qcm qcm;
@@ -133,6 +157,11 @@ public class QcmController {
 		}
 	}
 	
+	@ApiOperation(value = "Delete questionReponse from Qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully delete questionReponse from Qcm"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+    })
 	@DeleteMapping(URL_QUESTION_REPONSE_BY_ID)
 	public ResponseEntity<Qcm> deleteQuestionReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr) {
 		Qcm qcm;
@@ -145,6 +174,11 @@ public class QcmController {
 		}
 	}
 	
+	@ApiOperation(value = "Add reponse to Qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully add reponse to Qcm"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+    })
 	@PutMapping(URL_REPONSE)
 	public ResponseEntity<Qcm> addReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr) {
 		Qcm qcm;
@@ -157,6 +191,11 @@ public class QcmController {
 		}
 	}
 	
+	@ApiOperation(value = "Delete reponse from Qcm")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully delete reponse from Qcm"),
+            @ApiResponse(code = 404, message = "Qcm not found")
+    })
 	@DeleteMapping(URL_REPONSE_BY_ID)
 	public ResponseEntity<Qcm> deleteReponse(@PathVariable(value = "id") Long idQcm, @PathVariable(value = "idQr") Long idQr, @PathVariable(value = "idReponse") Long idReponse) {
 		Qcm qcm;

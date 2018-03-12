@@ -28,9 +28,4 @@ export class CorrectQcmComponent implements OnInit {
     this.qcm = this.qcmService.currentQcm;
     console.log(this.qcm);
   }
-
-  resetQcm() {
-    this.qcmService.resetQcmById(this.id).subscribe(qcmReset => {});
-    this.router.navigate(["/etesting/home"]);
-  }
 }
