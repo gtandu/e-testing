@@ -1,9 +1,17 @@
+div.row{
+    margin: 2%;
+}
+
 .add:hover{
-    color : green;
+    color : #66bb6a ;
     cursor: pointer;
 }
 
 .delete:hover{
-    color : red;
+    color : #ef5350;
     cursor: pointer;
+}
+
+h5{
+    margin-left: 4%;
 }
