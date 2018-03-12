@@ -14,3 +14,8 @@ div.card-panel {
 button.full {
     width:100%;
 }
+
+.upload:hover{
+    color: blue;
+    cursor: pointer;
+}
