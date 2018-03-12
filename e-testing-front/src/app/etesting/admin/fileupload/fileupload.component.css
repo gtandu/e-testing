@@ -6,6 +6,7 @@ div.card-panel.drag-and-drop {
     padding: 1% 2% 1% 2%;
     margin: 1% 0 1% 0;
     height: 200px;
+    border: 1.5px dashed;
 }
 
 div.card-panel.import {
