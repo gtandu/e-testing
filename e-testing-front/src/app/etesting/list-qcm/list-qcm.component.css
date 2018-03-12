@@ -19,3 +19,8 @@ button.full {
     color: blue;
     cursor: pointer;
 }
+
+.edit:hover{
+    color: green;
+    cursor: pointer;
+}

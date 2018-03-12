@@ -14,7 +14,7 @@
       </div>
     </button>
     <div *ngIf="isAdmin">
-      <i class="material-icons">edit</i>
+      <i class="edit material-icons" (click)="editQcm(qcm.id)">edit</i>
       <i class="upload material-icons" (click)="exportQcm(qcm.id)">file_upload</i>
     </div>
   </div>

@@ -31,6 +31,10 @@ export class ListQcmComponent implements OnInit {
     this.router.navigate(["etesting/" + Paths.QCM + `/${id}`]);
   }
 
+  editQcm(qcmId : number){
+    this.router.navigate(["etesting/" + Paths.EDIT_QCM + `/${qcmId}`]);
+  }
+
   exportQcm(qcmId: number) {
     const nameOfFileToDownload = "qcm.xml";
     this.qcmService.exportQcm(qcmId).subscribe(xmlQcmFromDb => {

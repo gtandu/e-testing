@@ -3,6 +3,7 @@ export class Paths {
   public static readonly QCM = '/qcm';
   public static readonly XML = '/xml';
   public static readonly QCM_XML = Paths.QCM + '/xml';
+  public static readonly EDIT_QCM = "/editQcm"
 
   public static readonly QUESTION_REPONSE = '/questionReponse';
   public static readonly REPONSE = '/reponse';

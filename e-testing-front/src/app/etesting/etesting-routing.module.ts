@@ -26,6 +26,11 @@ const etestingRoutes: Routes = [
         path: "importQcm",
         canActivate: [RoleGuardService],
         component: AdminComponent
+      },
+      {
+        path: "editQcm/:id",
+        canActivate: [RoleGuardService],
+        component: AdminComponent
       }
     ]
   }
