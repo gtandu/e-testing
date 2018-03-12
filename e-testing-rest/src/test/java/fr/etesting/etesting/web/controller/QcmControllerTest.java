@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -168,32 +167,7 @@ public class QcmControllerTest {
 		verify(qcmServiceImpl).correctQcm(eq(idQcm), any(Qcm.class), anyString());
 		
 	}
-
-	@Test
-	@WithMockUser
-	public void testResetQcm() throws Exception {
-		Long idQcm = 1L;
-		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
-		when(qcmServiceImpl.resetQcm(any(Qcm.class))).thenReturn(new Qcm());
-		
-		ResultActions result = mockMvc.perform(patch(QcmController.URL_QCM_BY_ID, idQcm));
-		result.andExpect(status().isOk());
-		
-		verify(qcmServiceImpl).findQcmById(eq(idQcm));
-		verify(qcmServiceImpl).resetQcm(any(Qcm.class));
-	}
 	
-	@Test
-	@WithMockUser
-	public void testResetQcmNotFoud() throws Exception {
-		Long idQcm = 1L;
-		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
-		
-		ResultActions result = mockMvc.perform(patch(QcmController.URL_QCM_BY_ID, idQcm));
-		result.andExpect(status().isNotFound());
-		
-		verify(qcmServiceImpl).findQcmById(eq(idQcm));
-	}
 
 	@Test
 	@WithMockUser
@@ -283,7 +257,7 @@ public class QcmControllerTest {
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
 		
 		ResultActions result = mockMvc.perform(put(QcmController.URL_REPONSE, idQcm, idQr));
-		result.andExpect(status().isOk());
+		result.andExpect(status().isNotFound());
 		
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));
 	}

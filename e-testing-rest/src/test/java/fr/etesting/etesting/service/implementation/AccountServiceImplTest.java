@@ -5,6 +5,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -61,6 +62,16 @@ public class AccountServiceImplTest {
 		utilisateurServiceImpl.findByMail(mail);
 		
 		verify(utilisateurRepository).findByMail(eq(mail));
+	}
+
+	@Test
+	public void testFindAllAdmin() throws Exception {
+		
+		when(utilisateurRepository.findAllAdmin()).thenReturn(Arrays.asList(new Account()));
+		
+		utilisateurServiceImpl.findAllAdmin();
+		
+		verify(utilisateurRepository).findAllAdmin();
 	}
 
 }
