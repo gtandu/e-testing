@@ -83,7 +83,8 @@ export class QcmService {
         this.authService.server +
           Paths.QCM +
           `/${qcm.id}` +
-          Paths.QUESTION_REPONSE + `/${questionReponseId}`,
+          Paths.QUESTION_REPONSE +
+          `/${questionReponseId}`,
         this.options
       )
       .map((response: Response) => response.json());
@@ -95,22 +96,42 @@ export class QcmService {
         this.authService.server +
           Paths.QCM +
           `/${qcm.id}` +
-          Paths.QUESTION_REPONSE + `/${questionReponseId}` + Paths.REPONSE ,
+          Paths.QUESTION_REPONSE +
+          `/${questionReponseId}` +
+          Paths.REPONSE,
         null,
         this.options
       )
       .map((response: Response) => response.json());
   }
 
-  deleteReponse(qcm: Qcm, questionReponseId: number, reponseId: number): Observable<Qcm> {
+  deleteReponse(
+    qcm: Qcm,
+    questionReponseId: number,
+    reponseId: number
+  ): Observable<Qcm> {
     return this.http
       .delete(
         this.authService.server +
           Paths.QCM +
           `/${qcm.id}` +
-          Paths.QUESTION_REPONSE + `/${questionReponseId}` + Paths.REPONSE + `/${reponseId}`,
+          Paths.QUESTION_REPONSE +
+          `/${questionReponseId}` +
+          Paths.REPONSE +
+          `/${reponseId}`,
         this.options
       )
       .map((response: Response) => response.json());
+  }
+
+  exportQcm(qcmId: number) {
+    this.headers.append("Content-Type", "text/xml");
+
+    return this.http
+      .get(
+        this.authService.server + Paths.QCM + `/${qcmId}` + Paths.QCM_XML,
+        this.options
+      )
+      .map((response: Response) => response);
   }
 }

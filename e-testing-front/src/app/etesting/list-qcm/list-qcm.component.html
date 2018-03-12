@@ -1,16 +1,21 @@
 <div class="row ">
   <div class="col l12 m12 s12">
-      <div class="card-panel grey lighten-2 title">
-        <span>
-            <h4 class="center">Vos QCMs</h4>
-        </span>
+    <div class="card-panel grey lighten-2 title">
+      <span>
+        <h4 class="center">Vos QCMs</h4>
+      </span>
+    </div>
+  </div>
+  <div class="col l6 m6 s12" *ngFor="let qcm of qcms">
+    <button class="card grey lighten-4 full" (click)="takeQcm(qcm.id)" [id]="qcm.id">
+      <div class="card-content">
+        <span class="card-title center">{{qcm.nom}}</span>
+
       </div>
+    </button>
+    <div *ngIf="isAdmin">
+      <i class="material-icons">edit</i>
+      <i class="material-icons" (click)="exportQcm(qcm.id)">file_upload</i>
     </div>
-    <div class="col l6 m6 s12" *ngFor="let qcm of qcms">
-      <button class="card grey lighten-4 full" (click)="takeQcm(qcm.id)" [id]="qcm.id">
-        <div class="card-content">
-          <span class="card-title center">{{qcm.nom}}</span>
-        </div>
-      </button>
-    </div>
+  </div>
 </div>
