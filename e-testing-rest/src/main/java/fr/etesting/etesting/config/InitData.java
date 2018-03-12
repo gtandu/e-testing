@@ -26,6 +26,7 @@ public class InitData implements ApplicationRunner {
 		Authority authorityAdmin = new Authority();
 		authorityAdmin.setRole(RoleAccountEnum.Administrator.getRole());
 		gtandu.setAuthorities(Arrays.asList(authorityAdmin));
+		dcourtaud.setAuthorities(Arrays.asList(authorityAdmin));
 		accountService.saveAccount(gtandu);
 		accountService.saveAccount(cmapella);
 		accountService.saveAccount(dcourtaud);
