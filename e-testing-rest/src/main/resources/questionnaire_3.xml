@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<qcm>
+    <nom>M2MIAA 2018 - E-Testing</nom>
+    <listeQuestionsReponses>
+        <questionreponse>
+            <libelleQuestion>Combien sommes-nous dans le projet ?</libelleQuestion>
+            <listeReponses>
+                <reponse>
+                    <libelleReponse>2</libelleReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>3</libelleReponse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>4</libelleReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>Beaucoup trop !</libelleReponse>
+                </reponse>
+            </listeReponses>
+        </questionreponse>
+        <questionreponse>
+            <libelleQuestion>Quel framework avons-nous utilisé pour le front ?</libelleQuestion>
+            <listeReponses>
+                <reponse>
+                    <libelleReponse>Angular + MaterializeCSS</libelleReponse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>ReactJS + Semantic UI</libelleReponse>
+                </reponse>
+            </listeReponses>
+        </questionreponse>
+        <questionreponse>
+            <libelleQuestion>Avez-vous apprécié cette présentation ?</libelleQuestion>
+            <listeReponses>
+                <reponse>
+                    <libelleReponse>Oui, c'était excellent !</libelleReponse>
+                    <bonneReponse>true</bonneReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>Oui, pas mal ça passe le temps...</libelleReponse>
+                </reponse>
+                <reponse>
+                    <libelleReponse>Non, c'était trop parfait pour être bien</libelleReponse>
+                </reponse>
+            </listeReponses>
+        </questionreponse>
+    </listeQuestionsReponses>
+</qcm>

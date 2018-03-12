@@ -6,16 +6,19 @@
       </span>
     </div>
   </div>
-  <div class="col l6 m6 s12" *ngFor="let qcm of qcms">
-    <button class="card grey lighten-4 full" (click)="takeQcm(qcm.id)" [id]="qcm.id">
+  <div class="col l6 m12 s12" *ngFor="let qcm of qcms">
+    <button class="col l11 m11 s11 card grey lighten-4 full" (click)="takeQcm(qcm.id)" [id]="qcm.id">
       <div class="card-content">
         <span class="card-title center">{{qcm.nom}}</span>
 
       </div>
     </button>
-    <div *ngIf="isAdmin">
-      <i class="edit material-icons" (click)="editQcm(qcm.id)">edit</i>
-      <i class="upload material-icons" (click)="exportQcm(qcm.id)">file_upload</i>
+    <div class="col l1 m1 s1 edit" *ngIf="isAdmin">
+      <button class="waves-effect waves-light btn green darken-1 edit small" (click)="editQcm(qcm.id)">
+        <i class="material-icons">edit</i>
+      </button>
+      <button class="waves-effect waves-light btn light-blue darken-1 upload small" (click)="exportQcm(qcm.id)">
+        <i class="material-icons">file_upload</i></button>
     </div>
   </div>
 </div>
