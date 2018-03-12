@@ -5,6 +5,7 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -15,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -194,8 +196,128 @@ public class QcmControllerTest {
 	}
 
 	@Test
+	@WithMockUser
 	public void testGetAllQcm() throws Exception {
+		when(qcmServiceImpl.findAllQcm()).thenReturn(Arrays.asList(new Qcm()));
 		
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findAllQcm();
+	}
+
+	@Test
+	@WithMockUser
+	public void testAddQuestionReponse() throws Exception {
+		Long idQcm = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+		when(qcmServiceImpl.addQuestionReponse(any(Qcm.class))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(put(QcmController.URL_QUESTION_REPONSE, idQcm));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+		verify(qcmServiceImpl).addQuestionReponse(any(Qcm.class));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testAddQuestionReponseQcmNotFoundException() throws Exception {
+		Long idQcm = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+		
+		ResultActions result = mockMvc.perform(put(QcmController.URL_QUESTION_REPONSE, idQcm));
+		result.andExpect(status().isNotFound());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+
+	@Test
+	@WithMockUser
+	public void testDeleteQuestionReponse() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+		when(qcmServiceImpl.deleteQuestionReponse(any(Qcm.class), eq(idQr))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(delete(QcmController.URL_QUESTION_REPONSE_BY_ID, idQcm, idQr));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+		verify(qcmServiceImpl).deleteQuestionReponse(any(Qcm.class), eq(idQr));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testDeleteQuestionReponseQcmNotFoundException() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+		
+		ResultActions result = mockMvc.perform(delete(QcmController.URL_QUESTION_REPONSE_BY_ID, idQcm, idQr));
+		result.andExpect(status().isNotFound());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+
+	@Test
+	@WithMockUser
+	public void testAddReponse() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+		when(qcmServiceImpl.addReponse(any(Qcm.class), eq(idQr))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(put(QcmController.URL_REPONSE, idQcm, idQr));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+		verify(qcmServiceImpl).addReponse(any(Qcm.class), eq(idQr));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testAddReponseQcmNotFoundException() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+		
+		ResultActions result = mockMvc.perform(put(QcmController.URL_REPONSE, idQcm, idQr));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+
+	@Test
+	@WithMockUser
+	public void testDeleteReponse() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		Long idReponse = 1L;
+		
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+		when(qcmServiceImpl.deleteReponse(any(Qcm.class), eq(idQr), eq(idReponse))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(delete(QcmController.URL_REPONSE_BY_ID, idQcm, idQr, idReponse));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+		verify(qcmServiceImpl).deleteReponse(any(Qcm.class), eq(idQr), eq(idReponse));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testDeleteReponseQcmNotFoundException() throws Exception {
+		Long idQcm = 1L;
+		Long idQr = 1L;
+		Long idReponse = 1L;
+		
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+		
+		ResultActions result = mockMvc.perform(delete(QcmController.URL_REPONSE_BY_ID, idQcm, idQr, idReponse));
+		result.andExpect(status().isNotFound());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
 	}
 
 
