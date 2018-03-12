@@ -129,7 +129,7 @@ export class QcmService {
 
     return this.http
       .get(
-        this.authService.server + Paths.QCM + `/${qcmId}` + Paths.QCM_XML,
+        this.authService.server + Paths.QCM + `/${qcmId}` + Paths.XML,
         this.options
       )
       .map((response: Response) => response);
