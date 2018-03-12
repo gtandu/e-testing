@@ -1,11 +1,15 @@
 package fr.etesting.etesting.web.controller;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,9 +30,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import fr.etesting.etesting.exception.QcmNotFoundException;
 import fr.etesting.etesting.model.Qcm;
@@ -39,10 +42,8 @@ import fr.etesting.etesting.service.implementation.XmlConverter;
 @WebMvcTest(QcmController.class)
 public class QcmControllerTest {
 
-	private MockMvc mockMvc;
-
 	@Autowired
-	private WebApplicationContext ctx;
+	private MockMvc mockMvc;
 
 	@MockBean
 	private IQcmService qcmServiceImpl;
@@ -59,9 +60,8 @@ public class QcmControllerTest {
 
 	@Before
 	public void init() throws IOException {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.ctx).alwaysDo(MockMvcResultHandlers.print()).build();
 		InputStream fileToUpload = new ClassPathResource(fileName).getInputStream();
-		qcmXml = new MockMultipartFile("xml", fileName, MediaType.APPLICATION_XML.getType(), fileToUpload);
+		qcmXml = new MockMultipartFile("file", fileName, MediaType.APPLICATION_XML.getType(), fileToUpload);
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class QcmControllerTest {
 		when(xmlConverter.convertFromXMLToObject(any(MockMultipartFile.class))).thenReturn(new Qcm());
 		when(qcmServiceImpl.saveQcm(any(Qcm.class))).thenReturn(new Qcm());
 
-		ResultActions result = mockMvc.perform(fileUpload(QcmController.URL_QCM).file(qcmXml));
+		ResultActions result = mockMvc.perform(fileUpload(QcmController.URL_QCM+"/xml").file(qcmXml));
 		result.andExpect(status().isOk());
 
 		verify(xmlConverter).convertFromXMLToObject(any(MockMultipartFile.class));
@@ -79,12 +79,13 @@ public class QcmControllerTest {
 	}
 
 	@Test
+	@WithMockUser
 	public void testConvertQcmToXml() throws Exception {
 		Long idQcm = 1L;
 
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
 
-		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM+"/xml", idQcm));
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM_BY_ID+"/xml", idQcm));
 		result.andExpect(status().isOk());
 		result.andExpect(content().contentType("application/xml;charset=UTF-8"));
 
@@ -94,19 +95,21 @@ public class QcmControllerTest {
 	}
 
 	@Test
+	@WithMockUser
 	public void testconvertQcmToXmlQcmNotFoundException() throws Exception {
 
 		Long idQcm = 1L;
 
 		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
 
-		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM+"/xml", idQcm));
+		ResultActions result = mockMvc.perform(get(QcmController.URL_QCM_BY_ID+"/xml", idQcm));
 		result.andExpect(status().isNotFound());
 
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));
 	}
 
 	@Test
+	@WithMockUser
 	public void testGetQcm() throws Exception {
 		Long idQcm = 1L;
 
@@ -121,6 +124,7 @@ public class QcmControllerTest {
 	}
 	
 	@Test
+	@WithMockUser
 	public void testGetQcmNotFound() throws Exception {
 		Long idQcm = 1L;
 
@@ -131,5 +135,68 @@ public class QcmControllerTest {
 
 		verify(qcmServiceImpl).findQcmById(eq(idQcm));
 	}
+
+	@Test
+	@WithMockUser
+	public void testSavedQcm() throws Exception {
+		Long idQcm = 1L;
+		Qcm qcm = new Qcm();
+		ObjectMapper objectMapper = new ObjectMapper();
+		when(qcmServiceImpl.updatePts(any(Qcm.class))).thenReturn(new Qcm());
+		when(qcmServiceImpl.saveQcm(any(Qcm.class))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(put(QcmController.URL_QCM_BY_ID, idQcm).content(objectMapper.writeValueAsString(qcm)).contentType(MediaType.APPLICATION_JSON_UTF8));
+		result.andExpect(status().isCreated());
+		
+		verify(qcmServiceImpl).updatePts(any(Qcm.class));
+		verify(qcmServiceImpl).saveQcm(any(Qcm.class));
+	}
+
+	@Test
+	@WithMockUser(username="admin@test.fr")
+	public void testCorrectQcm() throws Exception {
+		Long idQcm = 1L;
+		Qcm qcm = new Qcm();
+		ObjectMapper objectMapper = new ObjectMapper();
+		when(qcmServiceImpl.correctQcm(eq(idQcm), any(Qcm.class), anyString())).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(post(QcmController.URL_QCM_BY_ID, idQcm).content(objectMapper.writeValueAsString(qcm)).contentType(MediaType.APPLICATION_JSON_UTF8));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).correctQcm(eq(idQcm), any(Qcm.class), anyString());
+		
+	}
+
+	@Test
+	@WithMockUser
+	public void testResetQcm() throws Exception {
+		Long idQcm = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenReturn(new Qcm());
+		when(qcmServiceImpl.resetQcm(any(Qcm.class))).thenReturn(new Qcm());
+		
+		ResultActions result = mockMvc.perform(patch(QcmController.URL_QCM_BY_ID, idQcm));
+		result.andExpect(status().isOk());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+		verify(qcmServiceImpl).resetQcm(any(Qcm.class));
+	}
+	
+	@Test
+	@WithMockUser
+	public void testResetQcmNotFoud() throws Exception {
+		Long idQcm = 1L;
+		when(qcmServiceImpl.findQcmById(eq(idQcm))).thenThrow(new QcmNotFoundException());
+		
+		ResultActions result = mockMvc.perform(patch(QcmController.URL_QCM_BY_ID, idQcm));
+		result.andExpect(status().isNotFound());
+		
+		verify(qcmServiceImpl).findQcmById(eq(idQcm));
+	}
+
+	@Test
+	public void testGetAllQcm() throws Exception {
+		
+	}
+
 
 }

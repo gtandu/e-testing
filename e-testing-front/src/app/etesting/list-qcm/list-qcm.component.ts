@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterContentInit } from "@angular/core";
 import { Qcm } from "../../models/qcm";
 import { QcmService } from "../../services/qcm/qcm.service";
 import { Router } from "@angular/router";
@@ -10,7 +10,7 @@ import { User } from "../../models/user";
   templateUrl: "./list-qcm.component.html",
   styleUrls: ["./list-qcm.component.css"]
 })
-export class ListQcmComponent implements OnInit {
+export class ListQcmComponent implements OnInit, AfterContentInit {
   qcms: Qcm[];
   qcm: Qcm;
   id: number;
@@ -20,11 +20,16 @@ export class ListQcmComponent implements OnInit {
   constructor(private qcmService: QcmService, private router: Router) {}
 
   ngOnInit() {
+    const user: User = JSON.parse(localStorage.getItem("currentUser"));
+    this.isAdmin = user.isAdmin;
+  }
+
+  ngAfterContentInit() {
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
     this.qcmService.getAllQcm().subscribe(qcm => {
       this.qcms = qcm;
     });
-    const user: User = JSON.parse(localStorage.getItem("currentUser"));
-    this.isAdmin = user.isAdmin;
   }
 
   takeQcm(id) {
