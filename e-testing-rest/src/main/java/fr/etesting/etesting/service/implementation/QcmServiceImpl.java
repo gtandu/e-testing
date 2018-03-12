@@ -76,11 +76,11 @@ public class QcmServiceImpl implements IQcmService {
 	@Override
 	public Qcm updatePts(Qcm qcm) {
 		for (QuestionReponse questionReponse : qcm.getListeQuestionsReponses()) {
-			questionReponse.getTotalPts();
+			questionReponse.setTotalPts(0);
 			for (Reponse reponse : questionReponse.getListeReponses()) {
-				if (reponse.getPoints() > 0) {
-					questionReponse.setTotalPts(questionReponse.getTotalPts() + reponse.getPoints());
-				}
+					if (reponse.getPoints() > 0) {
+						questionReponse.setTotalPts(questionReponse.getTotalPts() + reponse.getPoints());
+					}
 			}
 			qcm.setTotalPts(qcm.getTotalPts() + questionReponse.getTotalPts());
 		}
