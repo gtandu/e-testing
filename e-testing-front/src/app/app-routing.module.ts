@@ -8,9 +8,7 @@ import { QcmComponent } from './etesting/qcm/qcm.component';
 // routes
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'editqcm', component: FileUploadComponent },
-  { path: 'qcm', component: QcmComponent },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

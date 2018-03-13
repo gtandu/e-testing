@@ -12,7 +12,7 @@ export class AuthentificationService {
   public token: string;
   public server: string;
   public user: User;
-  public isLogged;
+  public isLogged = false;
   boolean;
   expectedRole = "Administrateur";
 
