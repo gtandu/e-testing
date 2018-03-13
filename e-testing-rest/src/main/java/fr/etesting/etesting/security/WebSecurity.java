@@ -41,7 +41,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			// header
 			.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 			// this disables session creation on Spring Security
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);;
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http.headers().frameOptions().disable();
 	}

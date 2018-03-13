@@ -1,27 +1,108 @@
-# ETestingFront
+# Bienvenue sur E-Testing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.8.
 
-## Development server
+E-Testing est une application qui permet aux enseignants de proposer un examen sous forme de QCM électronique.
+Il a la possibilité de les importer au format XML et de les exporter.  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+##  Les technologies
 
-## Code scaffolding
+### Back
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* [Spring MVC](https://spring.io/)
+* [Maven](https://maven.apache.org/)
+* [MySQL](https://www.mysql.com/fr/)
 
-## Build
+### Front
+* [Angular CLI](https://cli.angular.io/)
+* [MaterializeCss](http://materializecss.com/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Installation
 
-## Running unit tests
+### Configuration de l'API REST
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* [Java JDK Version 1.8](http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Eclipse Java EE](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/keplersr2)
+	* Installer le plugin Spring Tools disponible sur le Markelplace d'eclipse.
+* Clonez le projet dans votre entrepôt :
 
-## Running end-to-end tests
+		git clone https://github.com/gtandu/e-testing.git
+* Dans votre workspace d'Eclipse : **Import -> Maven -> Existing Maven Projects**
+* Cliquez droit sur votre projet : **Run as -> Maven Install** pour télécharger les libs.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Test de l'API Rest
 
-## Further help
+* Vous pouvez tester l'api sans deployer le client Angular via l'application [Postman](https://www.getpostman.com/)
+* Vous pouvez importer les requetes :  [Requetes Postman](https://www.getpostman.com/collections/6cd0109fd86a79fae341)
+* **IMPORTANT TOUTES LES REQUETES NECESSITE UN TOKEN VALIDE**. Il faut donc le generer en premier et l'inclure dans le header de chaque requete. 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Base de données
+
+* Créer une base de données MySQL :
+	* **Name** :  etesting
+	* **Port** : 3306
+	* **Username** : root
+	* **Password** : root
+
+* Vous pouvez adapter votre base de données (Adresse, port, nom, mot de passe) dans **src/main/resources/application-prod.properties**
+
+		spring.datasource.url = jdbc:mysql://localhost:3306/etesting
+		spring.datasource.username = root
+		spring.datasource.password = root	
+			
+				
+### Démarrer le serveur
+* Sélectionnez votre projet
+*  **Cliquez droit -> Run as -> Run Configurations**
+*  Créer une nouvelle configuration
+	* Main type : fr.etesting.etesting.ETestingApplication
+	* Profile : dev (Si vous souhaitez utilisez la base de données mémoire)
+	* Profile : prod (Pour utiliser votre propre base de données configuré au préalable.)
+	* Terminer par **"Apply"** ensuite **"Run"**. 
+*  Lorsque vous ouvrez la console, vous devriez voir  :
+
+		2017-06-27 13:24:50 INFO  o.s.j.e.a.AnnotationMBeanExporter - Registering beans for JMX exposure on startup
+		2017-06-27 13:24:50 INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainer - Tomcat started on port(s): 8080 (http)
+		2017-06-27 13:24:50 INFO  fr.etesting.etesting.ETestingApplication - Started ETestingApplication in 14.631 seconds (JVM running for 16.048)
+			
+*  Votre serveur est lancé
+
+### Configuration du Front
+
+* [Installer Node.js](https://nodejs.org/en/)
+* [Installer Angular CLI](https://cli.angular.io/)
+* Lancez la commande **npm install** dans le répertoire **e-testing-front**
+* Puis saisissez la commande suivante pour demarrer le client :
+**`ng serve`** 
+* Vous devriez voir les informations suivantes :
+
+	`webpack: Compiled successfully.`
+      
+* Votre serveur est lancé.
+* Ouvrez votre navigateur et allez à l'adresse suivante : [http://localhost:4200/login](http://localhost:4200/login)
+* Ouvrez le fichier suivant "**authentification.service.ts**" dans le dossier **e-testing-front/src/app/services/authentification.service.ts**
+* Modifier l'adresse du serveur pour qu'elle pointe vers votre API REST
+
+		constructor(private http: Http) {
+			/../
+        	this.server = 'http://localhost:8080';
+        }
+
+### Compte Utilisateur
+
+**Compte n°1 (Admin)**
+
+	User : g.tandu@hotmail.fr
+	Password : edu
+
+**Compte n°2**
+
+	User : didier.courtaud@univ-evry.fr
+	Password : edu
+
+**Compte n°3**
+
+	User : mapella.corentin@gmail.com
+	Password : ens
+
+
+
