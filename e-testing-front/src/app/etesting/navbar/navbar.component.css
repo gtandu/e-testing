@@ -1,3 +1,16 @@
 div.nav-wrapper {
     padding: 0 1% 0 1%;
 }
+
+img.small{
+    background: rgb(234, 247, 255);
+    height: 85%;
+    margin-top: 0.5%;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+.brand-logo{
+    font-family: "Champagne";
+    font-weight: bold;
+}
